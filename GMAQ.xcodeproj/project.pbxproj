@@ -99,13 +99,12 @@
 		AC23629626C5A27800BB92BB /* GMAQ */ = {
 			isa = PBXGroup;
 			children = (
-				AC23629726C5A27800BB92BB /* AppDelegate.swift */,
-				AC23629926C5A27800BB92BB /* SceneDelegate.swift */,
-				AC23629B26C5A27800BB92BB /* ViewController.swift */,
-				AC23629D26C5A27800BB92BB /* Main.storyboard */,
+				AC2362C726C5A28500BB92BB /* Common */,
 				AC2362A026C5A27900BB92BB /* Assets.xcassets */,
-				AC2362A226C5A27900BB92BB /* LaunchScreen.storyboard */,
 				AC2362A526C5A27900BB92BB /* Info.plist */,
+				AC2362C826C5A37800BB92BB /* Model */,
+				AC2362C926C5A38900BB92BB /* View */,
+				AC2362CA26C5A39D00BB92BB /* View Controller */,
 			);
 			path = GMAQ;
 			sourceTree = "<group>";
@@ -126,6 +125,39 @@
 				AC2362BB26C5A27900BB92BB /* Info.plist */,
 			);
 			path = GMAQUITests;
+			sourceTree = "<group>";
+		};
+		AC2362C726C5A28500BB92BB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AC23629726C5A27800BB92BB /* AppDelegate.swift */,
+				AC23629926C5A27800BB92BB /* SceneDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AC2362C826C5A37800BB92BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC2362C926C5A38900BB92BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC2362A226C5A27900BB92BB /* LaunchScreen.storyboard */,
+				AC23629D26C5A27800BB92BB /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC2362CA26C5A39D00BB92BB /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AC23629B26C5A27800BB92BB /* ViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
