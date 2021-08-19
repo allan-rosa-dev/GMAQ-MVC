@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainMenuViewController.swift
 //  GMAQ
 //
 //  Created by Allan Rosa on 12/08/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainMenuViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -16,4 +16,3 @@ class ViewController: UIViewController {
 
 
 }
-
