@@ -33,35 +33,43 @@ enum QuestionCategory: Int, CaseIterable, CustomStringConvertible {
 	case gadgets
 	case animeAndManga
 	case cartoonAndAnimations
-	case none
+	case any
 	
 	init(_ value: String){
-		switch value.lowercased() {
-			case "generalKnowledge": self = .generalKnowledge
-			case "books": self = .books
-			case "film": self = .film
-			case "music": self = .music
-			case "musicalsAndTheatres": self = .musicalsAndTheatres
-			case "television": self = .television
-			case "videoGames": self = .videoGames
-			case "boardGames": self = .boardGames
-			case "scienceAndNature": self = .scienceAndNature
-			case "computers": self = .computers
-			case "mathematics": self = .mathematics
-			case "mythology": self = .mythology
-			case "sports": self = .sports
-			case "geography": self = .geography
-			case "history": self = .history
-			case "politics": self = .politics
-			case "art": self = .art
-			case "celebrities": self = .celebrities
-			case "animals": self = .animals
-			case "vehicles": self = .vehicles
-			case "comics": self = .comics
-			case "gadgets": self = .gadgets
-			case "animeAndManga": self = .animeAndManga
-			case "cartoonAndAnimations": self = .cartoonAndAnimations
-			default: self = .none
+		let subString = value.split(separator: ":")
+		var newValue = value
+		if subString.count > 1 {
+			newValue = subString[1].description
+			newValue.removeFirst() // removes the leading whitespace after ":"
+		}
+		switch newValue {
+			case "General Knowledge": self = .generalKnowledge
+			case "Books": self = .books
+			case "Film": self = .film
+			case "Music": self = .music
+			case "Musicals & Theatres": self = .musicalsAndTheatres
+			case "Television": self = .television
+			case "Video Games": self = .videoGames
+			case "Board Games": self = .boardGames
+			case "Science & Nature": self = .scienceAndNature
+			case "Computers": self = .computers
+			case "Mathematics": self = .mathematics
+			case "Mythology": self = .mythology
+			case "Sports": self = .sports
+			case "Geography": self = .geography
+			case "History": self = .history
+			case "Politics": self = .politics
+			case "Art": self = .art
+			case "Celebrities": self = .celebrities
+			case "Animals": self = .animals
+			case "Vehicles": self = .vehicles
+			case "Comics": self = .comics
+			case "Gadgets": self = .gadgets
+			case "Japanese Anime & Manga": self = .animeAndManga
+			case "Cartoon & Animations": self = .cartoonAndAnimations
+			default:
+				print("Error initializing \(QuestionCategory.Type.self) with \(value)")
+				self = .any
 		}
 	}
 	
@@ -89,9 +97,9 @@ enum QuestionCategory: Int, CaseIterable, CustomStringConvertible {
 			case .vehicles: return "Vehicles"
 			case .comics: return "Comics"
 			case .gadgets: return "Gadgets"
-			case .animeAndManga: return "Anime & Manga"
+			case .animeAndManga: return "Japanese Anime & Manga"
 			case .cartoonAndAnimations: return "Cartoon & Animation"
-			case .none: return ""
+			case .any: return "Any Category"
 		}
 	}
 	

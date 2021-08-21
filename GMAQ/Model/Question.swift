@@ -17,8 +17,8 @@ struct Question {
 	
 	init(_ apiResult: QuestionResult) {
 		text = apiResult.question.base64Decoded()!
-		difficulty = QuestionDifficulty(apiResult.difficulty)
-		category = QuestionCategory(apiResult.category)
+		difficulty = QuestionDifficulty(apiResult.difficulty.base64Decoded()!)
+		category = QuestionCategory(apiResult.category.base64Decoded()!)
 		// we have to decode the strings because the api returns encoded strings
 		var ans = [Answer(text: apiResult.correct_answer.base64Decoded() ?? "", isCorrect: true)]
 		apiResult.incorrect_answers.forEach { encodedString in

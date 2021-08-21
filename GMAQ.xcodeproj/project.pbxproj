@@ -25,6 +25,7 @@
 		AC2362E126C5A84F00BB92BB /* GameSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2362E026C5A84F00BB92BB /* GameSettingsViewController.swift */; };
 		AC2362E326C5A86500BB92BB /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2362E226C5A86500BB92BB /* HighScoreViewController.swift */; };
 		AC2362E526C5A87100BB92BB /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2362E426C5A87100BB92BB /* GameResultViewController.swift */; };
+		AC2C009226CFDE9C00C2AFB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2C009126CFDE9C00C2AFB9 /* Constants.swift */; };
 		AC70B96B26CB67B2001813D7 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96A26CB67B2001813D7 /* Quiz.swift */; };
 		AC70B96D26CB6940001813D7 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96C26CB6940001813D7 /* Answer.swift */; };
 		AC732DEE26C5B78F0054A64C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC732DED26C5B78F0054A64C /* Service.swift */; };
@@ -72,6 +73,7 @@
 		AC2362E026C5A84F00BB92BB /* GameSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsViewController.swift; sourceTree = "<group>"; };
 		AC2362E226C5A86500BB92BB /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		AC2362E426C5A87100BB92BB /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
+		AC2C009126CFDE9C00C2AFB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AC70B96A26CB67B2001813D7 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		AC70B96C26CB6940001813D7 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		AC732DED26C5B78F0054A64C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				AC23629726C5A27800BB92BB /* AppDelegate.swift */,
 				AC23629926C5A27800BB92BB /* SceneDelegate.swift */,
 				AC2362DA26C5A70F00BB92BB /* Extensions.swift */,
+				AC2C009126CFDE9C00C2AFB9 /* Constants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -200,8 +203,8 @@
 		AC2362D326C5A64A00BB92BB /* API Service */ = {
 			isa = PBXGroup;
 			children = (
-				AC732DED26C5B78F0054A64C /* Service.swift */,
 				AC732DEF26C5C6360054A64C /* API Model */,
+				AC732DED26C5B78F0054A64C /* Service.swift */,
 			);
 			path = "API Service";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2362D026C5A61100BB92BB /* QuestionDifficulty.swift in Sources */,
+				AC2C009226CFDE9C00C2AFB9 /* Constants.swift in Sources */,
 				AC732DEE26C5B78F0054A64C /* Service.swift in Sources */,
 				AC2362DB26C5A70F00BB92BB /* Extensions.swift in Sources */,
 				AC2362D226C5A61C00BB92BB /* QuestionCategory.swift in Sources */,

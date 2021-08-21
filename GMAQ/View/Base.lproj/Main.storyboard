@@ -25,27 +25,28 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iGo-mc-5uN" userLabel="Buttons Stack View">
                                 <rect key="frame" x="30" y="354.33333333333326" width="354" height="331.66666666666674"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2x-F0-tNh">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2x-F0-tNh" userLabel="NewGameButton">
                                         <rect key="frame" x="62" y="0.0" width="230" height="66.333333333333329"/>
                                         <color key="backgroundColor" name="theme-blue"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="24"/>
                                         <color key="tintColor" name="theme-white"/>
                                         <state key="normal" title="New Game"/>
                                         <connections>
-                                            <segue destination="Xwq-NK-sva" kind="show" id="2qC-ai-lws"/>
+                                            <action selector="buttonPressed:" destination="jC2-1y-DhZ" eventType="touchUpInside" id="1yy-UV-nST"/>
+                                            <segue destination="Xwq-NK-sva" kind="show" identifier="mainMenuToGameSettings" id="2qC-ai-lws"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G35-8Q-Zyk">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G35-8Q-Zyk" userLabel="HighScoresButton">
                                         <rect key="frame" x="62" y="132.66666666666669" width="230" height="66.333333333333314"/>
                                         <color key="backgroundColor" name="theme-blue"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="24"/>
                                         <color key="tintColor" name="theme-white"/>
                                         <state key="normal" title="High Scores"/>
                                         <connections>
-                                            <segue destination="aQG-NT-Smu" kind="show" id="Y5m-hj-gM2"/>
+                                            <segue destination="aQG-NT-Smu" kind="show" identifier="mainMenuToHighScores" id="Y5m-hj-gM2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzB-fi-nwz">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzB-fi-nwz" userLabel="SettingsButton">
                                         <rect key="frame" x="62" y="265.33333333333331" width="230" height="66.333333333333314"/>
                                         <color key="backgroundColor" name="theme-blue"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="24"/>
@@ -85,7 +86,7 @@
         <!--Game Settings View Controller-->
         <scene sceneID="wJa-UZ-fte">
             <objects>
-                <viewController id="Xwq-NK-sva" customClass="GameSettingsViewController" customModule="GMAQ" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Xwq-NK-sva" customClass="GameSettingsViewController" customModule="GMAQ" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L0a-G6-wsw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +103,7 @@
                                                 <color key="textColor" name="font-color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Anime / Manga" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQi-ZK-Odo">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Anime &amp; Manga" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQi-ZK-Odo" userLabel="CategoryTextField">
                                                 <rect key="frame" x="0.0" y="82.666666666666629" width="374" height="75"/>
                                                 <color key="backgroundColor" name="button-color"/>
                                                 <color key="textColor" name="button-text-color"/>
@@ -129,41 +130,35 @@
                                                 <color key="textColor" name="font-color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wud-Eb-eDg" userLabel="SliderView">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="OpC-rw-MDb" userLabel="SliderStackView">
                                                 <rect key="frame" x="0.0" y="42.666666666666686" width="374" height="115"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LSN-yY-cQ7" userLabel="SliderLabel">
-                                                        <rect key="frame" x="10" y="0.0" width="86" height="115"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LSN-yY-cQ7" userLabel="SliderLabel">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="115"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" name="font-color"/>
                                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="25"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     </textField>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-nE-iPh">
-                                                        <rect key="frame" x="114" y="0.0" width="262" height="116"/>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="50" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-nE-iPh">
+                                                        <rect key="frame" x="91.666666666666657" y="0.0" width="284.33333333333337" height="116"/>
                                                         <color key="tintColor" name="theme-blue"/>
                                                         <color key="thumbTintColor" name="theme-blue"/>
+                                                        <connections>
+                                                            <action selector="quizSizeSliderValueHasChanged:" destination="Xwq-NK-sva" eventType="valueChanged" id="zLX-ni-HbH"/>
+                                                        </connections>
                                                     </slider>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="LSN-yY-cQ7" secondAttribute="bottom" id="W5T-gx-Mmc"/>
-                                                    <constraint firstAttribute="trailing" secondItem="WEE-nE-iPh" secondAttribute="trailing" id="WfN-OR-I3i"/>
-                                                    <constraint firstItem="LSN-yY-cQ7" firstAttribute="top" secondItem="Wud-Eb-eDg" secondAttribute="top" id="b6Y-Zy-yA8"/>
-                                                    <constraint firstItem="WEE-nE-iPh" firstAttribute="top" secondItem="Wud-Eb-eDg" secondAttribute="top" id="cvY-Ac-eU7"/>
-                                                    <constraint firstItem="LSN-yY-cQ7" firstAttribute="leading" secondItem="Wud-Eb-eDg" secondAttribute="leading" constant="10" id="mYr-sp-Cuh"/>
-                                                    <constraint firstItem="WEE-nE-iPh" firstAttribute="width" secondItem="LSN-yY-cQ7" secondAttribute="width" multiplier="3" id="nWo-aV-xEZ"/>
-                                                    <constraint firstItem="WEE-nE-iPh" firstAttribute="leading" secondItem="LSN-yY-cQ7" secondAttribute="trailing" constant="20" id="qLz-Yl-eQX"/>
-                                                    <constraint firstAttribute="bottom" secondItem="WEE-nE-iPh" secondAttribute="bottom" id="sTi-DK-hxO"/>
+                                                    <constraint firstItem="WEE-nE-iPh" firstAttribute="width" secondItem="LSN-yY-cQ7" secondAttribute="width" multiplier="3" id="JNO-ft-5sL"/>
                                                 </constraints>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="K1r-uw-z6U" firstAttribute="leading" secondItem="d9w-90-zH3" secondAttribute="leading" id="44B-Zs-NsR"/>
-                                            <constraint firstItem="Wud-Eb-eDg" firstAttribute="leading" secondItem="d9w-90-zH3" secondAttribute="leading" id="gC5-FA-Ak1"/>
+                                            <constraint firstItem="OpC-rw-MDb" firstAttribute="centerX" secondItem="d9w-90-zH3" secondAttribute="centerX" id="5pS-Wh-o8I"/>
                                             <constraint firstAttribute="trailing" secondItem="K1r-uw-z6U" secondAttribute="trailing" id="lHb-jW-HPI"/>
-                                            <constraint firstAttribute="trailing" secondItem="Wud-Eb-eDg" secondAttribute="trailing" id="qOU-yg-aG4"/>
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="716-Hv-tZ9" userLabel="StartQuizButton">
@@ -174,7 +169,7 @@
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
                                         <connections>
-                                            <segue destination="aWp-Fq-WUf" kind="presentation" modalPresentationStyle="fullScreen" id="Wfy-bN-3zW"/>
+                                            <action selector="startQuizButtonPressed:" destination="Xwq-NK-sva" eventType="touchUpInside" id="7gs-6w-1LO"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -202,10 +197,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c9u-4e-t9o"/>
+                    <connections>
+                        <outlet property="categoryTextField" destination="lQi-ZK-Odo" id="2Ir-Eu-11e"/>
+                        <outlet property="quizSizeSlider" destination="WEE-nE-iPh" id="V1m-Ho-2Bz"/>
+                        <outlet property="quizSizeTextField" destination="LSN-yY-cQ7" id="WlJ-Me-GxM"/>
+                        <segue destination="aWp-Fq-WUf" kind="presentation" identifier="gameSettingsToGame" modalPresentationStyle="fullScreen" id="HYa-TV-myx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVx-Tm-Hjb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3060.8695652173915" y="-9.7826086956521738"/>
+            <point key="canvasLocation" x="3017" y="-10"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="Rgo-jv-l9h">
@@ -222,51 +223,63 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question 1/10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUd-1J-yy1" userLabel="QuizProgressLabel">
-                                <rect key="frame" x="30" y="85.666666666666671" width="354" height="40.666666666666671"/>
+                                <rect key="frame" x="30" y="90.666666666666671" width="354" height="40.666666666666671"/>
                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="30"/>
                                 <color key="textColor" name="font-color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which one isn't the name of a Stand in &quot;JoJo's Bizarre Adventure&quot;?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIO-Re-SGQ" userLabel="QuestionTextLabel">
-                                <rect key="frame" x="20" y="146.33333333333337" width="374" height="220.66666666666663"/>
+                                <rect key="frame" x="20" y="141.33333333333337" width="374" height="220.66666666666663"/>
                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="24"/>
                                 <color key="textColor" name="font-color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Gmx-FA-shn" userLabel="AnswerButtonStackView">
-                                <rect key="frame" x="20" y="387" width="374" height="329"/>
+                                <rect key="frame" x="20" y="382" width="374" height="334"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5st-Kk-gKw" userLabel="Answer0">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="67.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="68.666666666666671"/>
                                         <color key="backgroundColor" name="button-color"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                         <state key="normal" title="Hierophant Green">
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonClicked:" destination="aWp-Fq-WUf" eventType="touchUpInside" id="wal-Wn-4ic"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Od-eK-InE" userLabel="Answer1">
-                                        <rect key="frame" x="0.0" y="87.333333333333314" width="374" height="67.333333333333314"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Od-eK-InE" userLabel="Answer1">
+                                        <rect key="frame" x="0.0" y="88.666666666666686" width="374" height="68.333333333333314"/>
                                         <color key="backgroundColor" name="button-color"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                         <state key="normal" title="The Hand">
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonClicked:" destination="aWp-Fq-WUf" eventType="touchUpInside" id="jBI-Vk-iAx"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heo-qn-jPb" userLabel="Answer2">
-                                        <rect key="frame" x="0.0" y="174.66666666666663" width="374" height="67"/>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heo-qn-jPb" userLabel="Answer2">
+                                        <rect key="frame" x="0.0" y="177" width="374" height="68.666666666666686"/>
                                         <color key="backgroundColor" name="button-color"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                         <state key="normal" title="Gold Experience">
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonClicked:" destination="aWp-Fq-WUf" eventType="touchUpInside" id="7Jq-m2-NtA"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-PN-qWW" userLabel="Answer3">
-                                        <rect key="frame" x="0.0" y="261.66666666666663" width="374" height="67.333333333333314"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLN-PN-qWW" userLabel="Answer3">
+                                        <rect key="frame" x="0.0" y="265.66666666666663" width="374" height="68.333333333333314"/>
                                         <color key="backgroundColor" name="button-color"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
                                         <state key="normal" title="Emerald Lion">
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
+                                        <connections>
+                                            <action selector="answerButtonClicked:" destination="aWp-Fq-WUf" eventType="touchUpInside" id="5dJ-VU-zyM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -285,7 +298,7 @@
                         <color key="backgroundColor" name="background-color"/>
                         <constraints>
                             <constraint firstItem="KIO-Re-SGQ" firstAttribute="leading" secondItem="2xv-cC-FaY" secondAttribute="leading" constant="20" id="29S-PZ-o58"/>
-                            <constraint firstItem="hUd-1J-yy1" firstAttribute="top" secondItem="vic-wM-E6k" secondAttribute="bottom" constant="5" id="5Tk-VV-nV9"/>
+                            <constraint firstItem="hUd-1J-yy1" firstAttribute="top" secondItem="vic-wM-E6k" secondAttribute="bottom" constant="10" id="5Tk-VV-nV9"/>
                             <constraint firstItem="dpw-IO-c12" firstAttribute="trailing" secondItem="vic-wM-E6k" secondAttribute="trailing" constant="20" id="6Dj-c2-abZ"/>
                             <constraint firstItem="dpw-IO-c12" firstAttribute="trailing" secondItem="hUd-1J-yy1" secondAttribute="trailing" constant="30" id="6TJ-HE-whO"/>
                             <constraint firstItem="dpw-IO-c12" firstAttribute="trailing" secondItem="Gmx-FA-shn" secondAttribute="trailing" constant="20" id="BfS-v1-qMX"/>
@@ -294,7 +307,7 @@
                             <constraint firstItem="Gmx-FA-shn" firstAttribute="top" secondItem="KIO-Re-SGQ" secondAttribute="bottom" constant="20" id="NTd-H9-qNV"/>
                             <constraint firstAttribute="trailing" secondItem="KIO-Re-SGQ" secondAttribute="trailing" constant="20" id="OHw-bP-Ox6"/>
                             <constraint firstItem="vic-wM-E6k" firstAttribute="leading" secondItem="dpw-IO-c12" secondAttribute="leading" constant="20" id="PRP-Bb-TAV"/>
-                            <constraint firstItem="KIO-Re-SGQ" firstAttribute="top" secondItem="hUd-1J-yy1" secondAttribute="bottom" constant="20" id="QT6-FJ-UzC"/>
+                            <constraint firstItem="KIO-Re-SGQ" firstAttribute="top" secondItem="hUd-1J-yy1" secondAttribute="bottom" constant="10" id="QT6-FJ-UzC"/>
                             <constraint firstItem="dpw-IO-c12" firstAttribute="bottom" secondItem="Gmx-FA-shn" secondAttribute="bottom" constant="20" id="RRl-sb-QLT"/>
                             <constraint firstItem="Gmx-FA-shn" firstAttribute="top" secondItem="KIO-Re-SGQ" secondAttribute="bottom" constant="20" id="SRC-vd-qFh"/>
                             <constraint firstItem="Gmx-FA-shn" firstAttribute="leading" secondItem="dpw-IO-c12" secondAttribute="leading" constant="20" id="v4e-hW-LGZ"/>
@@ -302,12 +315,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="hrw-iv-ugn" kind="presentation" modalPresentationStyle="fullScreen" id="AAX-GS-BhI"/>
+                        <outlet property="answerButton0" destination="5st-Kk-gKw" id="jz8-MA-72P"/>
+                        <outlet property="answerButton1" destination="9Od-eK-InE" id="kSo-6d-BnW"/>
+                        <outlet property="answerButton2" destination="heo-qn-jPb" id="6gk-qR-Prs"/>
+                        <outlet property="answerButton3" destination="RLN-PN-qWW" id="fqL-An-9L3"/>
+                        <outlet property="questionTextLabel" destination="KIO-Re-SGQ" id="X9B-5m-w1G"/>
+                        <segue destination="hrw-iv-ugn" kind="presentation" identifier="gameToResults" modalPresentationStyle="fullScreen" id="AAX-GS-BhI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqx-vn-5C8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3814.4927536231885" y="-9.7826086956521738"/>
+            <point key="canvasLocation" x="3791" y="-11"/>
         </scene>
         <!--Game Result View Controller-->
         <scene sceneID="5K6-bS-9hN">
@@ -355,9 +373,6 @@
                                         <state key="normal" title="Continue">
                                             <color key="titleColor" name="button-text-color"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="aQG-NT-Smu" kind="presentation" id="Lov-17-GtA"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -403,18 +418,18 @@
             <objects>
                 <viewController id="aQG-NT-Smu" customClass="HighScoreViewController" customModule="GMAQ" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jpK-4b-2Gd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="go0-JN-jK9">
-                                <rect key="frame" x="0.0" y="19.999999999999993" width="414" height="107.33333333333331"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="103.66666666666669"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-trophy" translatesAutoresizingMaskIntoConstraints="NO" id="uiz-Zb-z3p">
-                                        <rect key="frame" x="0.0" y="0.0" width="138" height="107.33333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="103.66666666666667"/>
                                         <color key="tintColor" name="font-color"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaj-C8-qxL">
-                                        <rect key="frame" x="138" y="0.0" width="276" height="107.33333333333333"/>
+                                        <rect key="frame" x="138" y="0.0" width="276" height="103.66666666666667"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="40"/>
                                         <color key="textColor" name="font-color"/>
                                         <nil key="highlightedColor"/>
@@ -429,7 +444,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="s9T-Uo-IuB">
-                                <rect key="frame" x="20" y="167.33333333333334" width="374" height="37"/>
+                                <rect key="frame" x="20" y="207.66666666666666" width="374" height="37"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiP-9E-Qlq">
                                         <rect key="frame" x="0.0" y="0.0" width="117.33333333333333" height="37"/>
@@ -449,7 +464,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Odt-tf-Dnh">
-                                <rect key="frame" x="20" y="224.33333333333334" width="374" height="471.66666666666663"/>
+                                <rect key="frame" x="20" y="264.66666666666674" width="374" height="451.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -499,9 +514,6 @@
             <point key="canvasLocation" x="1321.7391304347827" y="-10.597826086956523"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Lov-17-GtA"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="GMAQ-logos" width="1200" height="1200"/>
         <image name="icon-trophy" width="512" height="512"/>

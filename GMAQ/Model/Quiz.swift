@@ -12,22 +12,28 @@ struct Quiz {
 	var score: Int = 0
 	var currentQuestionIndex: Int = 0
 	var currentQuestion: Question {
-		questions[currentQuestionIndex]
+		if questions.count > 0 && currentQuestionIndex < questions.count {
+			return questions[currentQuestionIndex]
+		}
+		else {
+			print("< Empty Question >")
+			return Question()
+		}
 	}
 	
-	mutating func analyzeAnswer(_ answer: Answer){
+	mutating func analyzeAnswer(_ answer: Answer) -> Bool{
+		currentQuestionIndex += 1
 		if answer.isCorrect {
 			self.score += 1
+			return true
 		}
 		else {
 			self.score -= 1 // >:)
+			return false
 		}
-		currentQuestionIndex += 1
 		
 		if currentQuestionIndex > questions.count {
 			//finish quiz
 		}
 	}
-	
-	
 }

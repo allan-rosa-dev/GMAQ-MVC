@@ -17,11 +17,10 @@ struct OpentdbAPIService {
 	func createQuiz(numberOfQuestions: Int, category: QuestionCategory, difficulty: QuestionDifficulty, completion: @escaping (Quiz) -> ()) {
 
 		var url = apiURL + "&amount=\(numberOfQuestions)"
-		if category != .none {
-			url += "&category=\(category)"
-		}
-		if difficulty != .none {
-			url += "&difficulty=\(difficulty)"
+		url += "&category=\(category.rawValue + 9)" // reason for +9: General Knowledge is id 9 under the API, and category here starting index is 0
+		
+		if difficulty != .any {
+			url += "&difficulty=\(difficulty.description)"
 		}
 		
 		fetchData(urlString: url) { (result: Result<QuestionQuery,Error>) in
@@ -34,7 +33,7 @@ struct OpentdbAPIService {
 					completion(Quiz(questions: questions))
 					
 				case .failure(let err):
-					print("Failed to fetch data")
+					print("--- Failed to fetch data ---")
 					print(err.localizedDescription)
 					return
 			}

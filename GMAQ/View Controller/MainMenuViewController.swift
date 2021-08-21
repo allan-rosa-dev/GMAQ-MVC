@@ -9,10 +9,27 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+	@IBAction func buttonPressed(_ sender: UIButton) {
+		let senderTag = ButtonTag(rawValue: sender.tag)
+		switch senderTag {
+			case .newGame:
+				print(sender.titleLabel?.text?.description ?? "ng")
+			case .highScores:
+				print(sender.titleLabel?.text?.description ?? "hs")
+			case .settings:
+				print(sender.titleLabel?.text?.description ?? "st")
+			case .none:
+				print("Shouldnt happen")
+		}
 	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()		
+	}
+}
 
-
+private enum ButtonTag: Int {
+	case newGame = 0
+	case highScores = 1
+	case settings = 2
 }
