@@ -10,7 +10,13 @@ import Foundation
 struct Quiz {
 	let questions: [Question]
 	var score: Int = 0
-	var currentQuestionIndex: Int = 0
+	var currentQuestionIndex: Int = 0 {
+		didSet {
+			if currentQuestionIndex > questions.count {
+				print("Finished Quiz. Score = \(score)")
+			}
+		}
+	}
 	var currentQuestion: Question {
 		if questions.count > 0 && currentQuestionIndex < questions.count {
 			return questions[currentQuestionIndex]
@@ -30,10 +36,6 @@ struct Quiz {
 		else {
 			self.score -= 1 // >:)
 			return false
-		}
-		
-		if currentQuestionIndex > questions.count {
-			//finish quiz
 		}
 	}
 }

@@ -17,7 +17,10 @@ struct K {
 		struct View {
 			struct Segue {
 				static let mainMenuToGameSettings = "mainMenuToGameSettings"
+				static let mainMenuToHighScores = "mainMenuToHighScores"
+				static let mainMenuToSettings = "mainMenuToSettings"
 				static let gameSettingsToGame = "gameSettingsToGame"
+				
 			}
 		}
 		

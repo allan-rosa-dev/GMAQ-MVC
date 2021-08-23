@@ -10,14 +10,15 @@ import UIKit
 class MainMenuViewController: UIViewController {
 
 	@IBAction func buttonPressed(_ sender: UIButton) {
+		// sender.provideVisualFeedback()
 		let senderTag = ButtonTag(rawValue: sender.tag)
 		switch senderTag {
 			case .newGame:
-				print(sender.titleLabel?.text?.description ?? "ng")
+				performSegue(withIdentifier: K.App.View.Segue.mainMenuToGameSettings, sender: self)
 			case .highScores:
-				print(sender.titleLabel?.text?.description ?? "hs")
+				performSegue(withIdentifier: K.App.View.Segue.mainMenuToHighScores, sender: self)
 			case .settings:
-				print(sender.titleLabel?.text?.description ?? "st")
+				performSegue(withIdentifier: K.App.View.Segue.mainMenuToSettings, sender: self)
 			case .none:
 				print("Shouldnt happen")
 		}

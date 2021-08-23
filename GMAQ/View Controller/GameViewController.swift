@@ -28,12 +28,12 @@ class GameViewController: UIViewController {
 		
 		let answers = quiz.currentQuestion.answers
 		
-		answerButton0.setTitle(answers[0].text, for: .normal)
-		answerButton1.setTitle(answers[1].text, for: .normal)
+		answerButton0.configure(with: answers[0])
+		answerButton1.configure(with: answers[1])
 		
 		if quiz.currentQuestion.isMultiple {
-			answerButton2.setTitle(answers[2].text, for: .normal)
-			answerButton3.setTitle(answers[3].text, for: .normal)
+			answerButton2.configure(with: answers[2])
+			answerButton3.configure(with: answers[3])
 		}
 		else {
 			answerButton2.isHidden = true
@@ -43,15 +43,17 @@ class GameViewController: UIViewController {
 	
 	@IBAction func answerButtonClicked(_ sender: UIButton) {
 		let playerAnswer = quiz.currentQuestion.answers[sender.tag]
-		let result = quiz.analyzeAnswer(playerAnswer)
+		let isCorrect = quiz.analyzeAnswer(playerAnswer)
 		
-		print("\(playerAnswer.text) is \(result ? "Correct!" : "Wrong!") -> Current score: \(quiz.score)")
+		print("\(playerAnswer.text) is \(isCorrect ? "Correct!" : "Wrong!") -> Current score: \(quiz.score)")
 		
+		sender.provideVisualFeedback()
+		sender.backgroundColor = isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
+
 		// flash answer result animation AND AFTERWARDS setupQuestion
-		setupQuestion()
-	}
-	
-	private func animateAnswerButton(_ button: UIButton){
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+			self.setupQuestion()
+		}
 		
 	}
 

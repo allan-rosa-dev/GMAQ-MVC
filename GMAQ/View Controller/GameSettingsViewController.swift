@@ -20,15 +20,23 @@ class GameSettingsViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		initializeHideKeyboard()
+		
 		categoryPickerView.delegate = self
 		categoryPickerView.dataSource = self
+		quizSizeTextField.delegate = self
 		
 		categoryTextField.inputView = categoryPickerView
-		// load last time's config from UserDefaults
 		
-		categoryTextField.text = QuestionCategory.animeAndManga.description
-		quizSizeTextField.text = String(quizSize)
-		quizSizeSlider.value = Float(quizSize)
+		// load last time's config from UserDefaults
+		let lastCategorySelected = QuestionCategory.animeAndManga
+		let lastQuizSize = 10
+		
+		quizSizeTextField.smartInsertDeleteType = .no
+		categoryPickerView.selectRow(lastCategorySelected.rawValue, inComponent: 0, animated: false)
+		categoryTextField.text = lastCategorySelected.description
+		quizSizeTextField.text = String(lastQuizSize)
+		quizSizeSlider.value = Float(lastQuizSize)
     }
 	
 	@IBAction func startQuizButtonPressed(_ sender: Any) {
@@ -49,6 +57,12 @@ class GameSettingsViewController: UIViewController {
 	@IBAction func quizSizeSliderValueHasChanged(_ sender: UISlider) {
 		quizSize = Int(sender.value)
 		quizSizeTextField.text = String(quizSize)
+	}
+	
+	@IBAction func textFieldValueChanged(_ sender: UITextField) {
+		guard let text = sender.text else { return }
+		guard let value = Float(text) else { return }
+		quizSizeSlider.setValue(value, animated: true)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,7 +93,41 @@ extension GameSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSour
 
 //MARK: - UITextFieldDelegate
 extension GameSettingsViewController: UITextFieldDelegate {
-	func textFieldDidEndEditing(_ textField: UITextField) {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let quizSizeRange = 1...50
+		guard let text = textField.text else { return false }
+		let newText = (text as NSString).replacingCharacters(in: range, with: string) as String
+		if let inputValue = Int(newText) {
+			return (quizSizeRange.contains(inputValue)) ? true : false
+		}
+		return false
+	}
+	
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		textField.text = ""
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		prepareForEndEditing(textField)
 		textField.resignFirstResponder()
+		return true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		prepareForEndEditing(textField)
+		textField.resignFirstResponder()
+	}
+	
+	//MARK: - Helper functions
+	func prepareForEndEditing(_ textField: UITextField){
+		guard let text = textField.text else {
+			textField.text = "10"
+			return
+		}
+		guard let value = Float(text) else {
+			textField.text = "10"
+			return
+		}
+		quizSizeSlider.setValue(value, animated: true)
 	}
 }
