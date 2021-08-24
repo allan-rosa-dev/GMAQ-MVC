@@ -54,15 +54,21 @@ extension UIButton {
 
 
 extension UIView {
-	func provideVisualFeedback(duration: TimeInterval = 0.2, scale: CGFloat = 0.8) {
+	func provideVisualFeedback(duration: TimeInterval = 0.2, scale: CGFloat = 0.8, color: UIColor?) {
 		// Shrink
 		UIView.animate(withDuration: duration/2, delay: 0.0, options: [.curveLinear],
 					   animations: {
 						self.transform = CGAffineTransform(scaleX: scale, y: scale)
+						self.alpha = 0
 					   }, completion: { _ in
 						// Revert back to original size
 						UIView.animate(withDuration: duration/2, delay: 0.0, options: [.curveLinear], animations: {
+							self.alpha = 1
 							self.transform = .identity
+						}, completion: { completed in
+							if completed {
+								self.backgroundColor = color
+							}
 						})
 					})
 	}
@@ -77,16 +83,4 @@ extension UIViewController {
 	@objc private func dismissKeyboard(){
 		view.endEditing(true)
 	}
-	
-//	func addKeyboardObservers(){
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//	}
-//	
-//	@objc fileprivate func keyboardWillShow(_ notification: Notification){
-//		let vc = UIViewController
-//		if (  == nil) { return }
-//		guard let duration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double) else { return }
-//		
-//	}
 }

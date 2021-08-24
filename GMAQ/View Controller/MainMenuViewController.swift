@@ -25,7 +25,8 @@ class MainMenuViewController: UIViewController {
 	}
 	
 	override func viewDidLoad() {
-		super.viewDidLoad()		
+		super.viewDidLoad()
+		navigationController?.isNavigationBarHidden = true
 	}
 }
 

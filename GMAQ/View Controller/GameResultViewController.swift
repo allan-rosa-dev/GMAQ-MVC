@@ -9,21 +9,42 @@ import UIKit
 
 class GameResultViewController: UIViewController {
 
+	var quiz = Quiz(questions: [])
+	@IBOutlet weak var resultsLabel: UILabel!
+	@IBOutlet weak var quizBreakdownTableView: UITableView!
+	
+	@IBOutlet weak var nameTextField: UITextField!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		
+		initializeHideKeyboard()
+		
+		
+	
     }
-    
+	
+	fileprivate func setupView(){
+		
+	}
+	
+	@IBAction func buttonClicked(_ sender: UIButton) {
+		// Segue to highscores with name (from nameTextField and score)
+	}
+	
+	private func analyzeScore(_ score: Int){
+		let evaluation = score/quiz.questions.count
+	}
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+//MARK: - UITableViewDelegate & DataSource
+extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return quiz.questions.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		// create cell
+		return UITableViewCell()
+	}
 }

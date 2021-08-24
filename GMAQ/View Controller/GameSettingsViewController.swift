@@ -20,6 +20,8 @@ class GameSettingsViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		navigationController?.isNavigationBarHidden = false
+		
 		initializeHideKeyboard()
 		
 		categoryPickerView.delegate = self

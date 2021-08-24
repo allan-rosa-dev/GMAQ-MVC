@@ -14,6 +14,7 @@ struct Quiz {
 		didSet {
 			if currentQuestionIndex > questions.count {
 				print("Finished Quiz. Score = \(score)")
+				delegate?.quizDidFinish(self)
 			}
 		}
 	}
@@ -26,8 +27,11 @@ struct Quiz {
 			return Question()
 		}
 	}
+	var playerAnswers = [Answer]()
+	var delegate: QuizDelegate?
 	
-	mutating func analyzeAnswer(_ answer: Answer) -> Bool{
+	mutating func analyzeAnswer(_ answer: Answer) -> Bool {
+		playerAnswers.append(answer) // creating the backlog for the player answers to be shown on quiz breakdown
 		currentQuestionIndex += 1
 		if answer.isCorrect {
 			self.score += 1
@@ -38,4 +42,8 @@ struct Quiz {
 			return false
 		}
 	}
+}
+
+protocol QuizDelegate {
+	func quizDidFinish(_ quiz: Quiz)
 }

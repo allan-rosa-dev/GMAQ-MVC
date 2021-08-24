@@ -29,6 +29,7 @@
 		AC70B96B26CB67B2001813D7 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96A26CB67B2001813D7 /* Quiz.swift */; };
 		AC70B96D26CB6940001813D7 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96C26CB6940001813D7 /* Answer.swift */; };
 		AC732DEE26C5B78F0054A64C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC732DED26C5B78F0054A64C /* Service.swift */; };
+		ACC4BC4426D4082400CA2AC5 /* FilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC4BC4326D4082400CA2AC5 /* FilesManager.swift */; };
 		ACC7040626D36BAC006AD10D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ACC7040526D36BAC006AD10D /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		AC70B96A26CB67B2001813D7 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		AC70B96C26CB6940001813D7 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		AC732DED26C5B78F0054A64C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		ACC4BC4326D4082400CA2AC5 /* FilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				AC23629926C5A27800BB92BB /* SceneDelegate.swift */,
 				AC2362DA26C5A70F00BB92BB /* Extensions.swift */,
 				AC2C009126CFDE9C00C2AFB9 /* Constants.swift */,
+				ACC4BC4326D4082400CA2AC5 /* FilesManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				AC2362DF26C5A82B00BB92BB /* GameViewController.swift in Sources */,
 				AC2362D526C5A67500BB92BB /* QuestionQuery.swift in Sources */,
 				AC2362E326C5A86500BB92BB /* HighScoreViewController.swift in Sources */,
+				ACC4BC4426D4082400CA2AC5 /* FilesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

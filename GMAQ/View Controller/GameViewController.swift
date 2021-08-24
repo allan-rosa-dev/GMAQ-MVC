@@ -10,6 +10,7 @@ import UIKit
 class GameViewController: UIViewController {
 
 	@IBOutlet weak var questionTextLabel: UILabel!
+	@IBOutlet weak var quizProgressLabel: UILabel!
 	@IBOutlet weak var answerButton0: UIButton!
 	@IBOutlet weak var answerButton1: UIButton!
 	@IBOutlet weak var answerButton2: UIButton!
@@ -24,7 +25,8 @@ class GameViewController: UIViewController {
 	}
 	
 	private func setupQuestion(){
-		questionTextLabel.text =  quiz.currentQuestion.text
+		quizProgressLabel.text = "Question (\(quiz.currentQuestionIndex+1)/\(quiz.questions.count))"
+		questionTextLabel.text = quiz.currentQuestion.text
 		
 		let answers = quiz.currentQuestion.answers
 		
@@ -45,16 +47,24 @@ class GameViewController: UIViewController {
 		let playerAnswer = quiz.currentQuestion.answers[sender.tag]
 		let isCorrect = quiz.analyzeAnswer(playerAnswer)
 		
-		print("\(playerAnswer.text) is \(isCorrect ? "Correct!" : "Wrong!") -> Current score: \(quiz.score)")
-		
-		sender.provideVisualFeedback()
-		sender.backgroundColor = isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
+		let color = isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
+		sender.provideVisualFeedback(color: color)
 
-		// flash answer result animation AND AFTERWARDS setupQuestion
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1){ // execute after 1s
 			self.setupQuestion()
 		}
-		
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		let destinationVC = segue.destination as! GameResultViewController
+		destinationVC.quiz = self.quiz
 	}
 
+}
+
+//MARK: - QuizDelegate
+extension GameViewController: QuizDelegate{
+	func quizDidFinish(_ quiz: Quiz) {
+		performSegue(withIdentifier: K.App.View.Segue.gameToResults, sender: self)
+	}
 }

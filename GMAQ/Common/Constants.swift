@@ -20,6 +20,8 @@ struct K {
 				static let mainMenuToHighScores = "mainMenuToHighScores"
 				static let mainMenuToSettings = "mainMenuToSettings"
 				static let gameSettingsToGame = "gameSettingsToGame"
+				static let gameToResults = "gameToResults"
+				static let resultsToHighScores = "resultsToHighScores"
 				
 			}
 		}
