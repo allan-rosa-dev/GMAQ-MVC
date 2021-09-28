@@ -30,7 +30,7 @@ struct OpentdbAPIService {
 					questionQuery.results.forEach { questionResult in
 						questions.append(Question(questionResult))
 					}
-					completion(Quiz(questions: questions))
+					completion(Quiz(from: questions))
 					
 				case .failure(let err):
 					print("--- Failed to fetch data ---")

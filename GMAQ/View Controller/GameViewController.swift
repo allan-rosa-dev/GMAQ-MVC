@@ -16,11 +16,12 @@ class GameViewController: UIViewController {
 	@IBOutlet weak var answerButton2: UIButton!
 	@IBOutlet weak var answerButton3: UIButton!
 	
-	var quiz = Quiz(questions: [])
+	var quiz = Quiz(from: [])
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		quiz.delegate = self
 		setupQuestion()
 	}
 	
@@ -45,12 +46,11 @@ class GameViewController: UIViewController {
 	
 	@IBAction func answerButtonClicked(_ sender: UIButton) {
 		let playerAnswer = quiz.currentQuestion.answers[sender.tag]
-		let isCorrect = quiz.analyzeAnswer(playerAnswer)
-		
-		let color = isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
+		let color = playerAnswer.isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
 		sender.provideVisualFeedback(color: color)
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1){ // execute after 1s
+			self.quiz.updateProgress(with: playerAnswer)
 			self.setupQuestion()
 		}
 	}
@@ -63,7 +63,7 @@ class GameViewController: UIViewController {
 }
 
 //MARK: - QuizDelegate
-extension GameViewController: QuizDelegate{
+extension GameViewController: QuizDelegate {
 	func quizDidFinish(_ quiz: Quiz) {
 		performSegue(withIdentifier: K.App.View.Segue.gameToResults, sender: self)
 	}

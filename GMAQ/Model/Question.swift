@@ -14,6 +14,7 @@ struct Question {
 	let category: QuestionCategory
 	let answers: [Answer]
 	var isMultiple: Bool { answers.count > 2 ? true : false }
+	let correctAnswer: Answer
 	
 	init(_ apiResult: QuestionResult) {
 		text = apiResult.question.base64Decoded()!
@@ -25,6 +26,7 @@ struct Question {
 			let decodedString = encodedString.base64Decoded() ?? ""
 			ans.append(Answer(text: decodedString, isCorrect: false))
 		}
+		correctAnswer = ans.first ?? Answer(text: "<Error>", isCorrect: true)
 		answers = ans.shuffled() // shuffling so the answer isnt always in the first position ;)
 	}
 	
@@ -33,5 +35,6 @@ struct Question {
 		self.difficulty = .easy
 		self.category = .generalKnowledge
 		self.answers = [Answer(text: "Dummy Text", isCorrect: true), Answer(text: "Real Text", isCorrect: false)]
+		self.correctAnswer = Answer(text: "Dummy Text", isCorrect: true)
 	}
 }

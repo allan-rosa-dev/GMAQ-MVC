@@ -14,8 +14,8 @@ class GameSettingsViewController: UIViewController {
 	@IBOutlet weak var quizSizeSlider: UISlider!
 	
 	var categoryPickerView = UIPickerView()
-	var quiz = Quiz(questions: [])
-	private var quizSize = 10
+	var quiz = Quiz(from: [])
+	private var quizSize = 1
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class GameSettingsViewController: UIViewController {
 		
 		// load last time's config from UserDefaults
 		let lastCategorySelected = QuestionCategory.animeAndManga
-		let lastQuizSize = 10
+		let lastQuizSize = 1
 		
 		quizSizeTextField.smartInsertDeleteType = .no
 		categoryPickerView.selectRow(lastCategorySelected.rawValue, inComponent: 0, animated: false)

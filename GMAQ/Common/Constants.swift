@@ -5,9 +5,17 @@
 //  Created by Allan Rosa on 20/08/21.
 //
 
-import Foundation
+import UIKit
 
 struct K {
+	struct Design {
+		// Mapped in Assets
+		static let fontName = "Devanagari Sangam MN"
+		static let fontNameBold = "Devanagari Sangam MN-Bold"
+		static let fontColor = UIColor(named: "font-color")
+		static let backgroundColor = UIColor(named: "background-color")
+	}
+	
 	struct App {
 		struct Defaults {
 			static let lastQuizCategory = QuestionCategory.animeAndManga.description
@@ -22,7 +30,6 @@ struct K {
 				static let gameSettingsToGame = "gameSettingsToGame"
 				static let gameToResults = "gameToResults"
 				static let resultsToHighScores = "resultsToHighScores"
-				
 			}
 		}
 		
