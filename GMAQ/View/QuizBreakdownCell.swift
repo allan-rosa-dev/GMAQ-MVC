@@ -11,8 +11,6 @@ class QuizBreakdownCell: UITableViewCell {
 	private enum Layout {
 		static let margin: CGFloat = 10
 		static let halfMargin: CGFloat = margin/2
-//		static let sizeHeaderImage: CGFloat = 50
-//		static let sizeIcon: CGFloat = 14
 	}
 	
 	var isDisplayingOriginalAnswer = true
@@ -76,7 +74,6 @@ class QuizBreakdownCell: UITableViewCell {
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		
-		configureViews()
 		buildViewHierarchy()
 		setupConstraints()
 	}
@@ -84,10 +81,6 @@ class QuizBreakdownCell: UITableViewCell {
 	@available(*, unavailable)
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-	private func configureViews() {
-		backgroundColor = .yellow
 	}
 	
 	private func buildViewHierarchy() {
@@ -138,7 +131,6 @@ class QuizBreakdownCell: UITableViewCell {
 	}
 	
 	func toggleAnswer(with answer: Answer){
-		isDisplayingOriginalAnswer = !isDisplayingOriginalAnswer
 		if answer.isCorrect {
 			answerLabel.text = "Correct Answer: " + answer.text
 			contentView.backgroundColor = UIColor.appColor(.blue)
@@ -147,6 +139,5 @@ class QuizBreakdownCell: UITableViewCell {
 			answerLabel.text = answer.text
 			contentView.backgroundColor = UIColor.appColor(.red)
 		}
-		self.reloadInputViews()
 	}
 }

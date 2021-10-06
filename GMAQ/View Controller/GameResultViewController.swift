@@ -12,10 +12,10 @@ class GameResultViewController: UIViewController {
 	// MARK: - Properties
 	var quiz = Quiz(from: [Question()]) {
 		didSet {
-			toggledData = Array(repeating: false, count: quiz.questions.count)
+			isOriginalAnswer = Array(repeating: true, count: quiz.questions.count)
 		}
 	}
-	var toggledData: [Bool] = []
+	var isOriginalAnswer: [Bool] = []
 	// var quiz = Quiz(from: [])
 	
 	@IBOutlet weak var resultsLabel: UILabel!
@@ -37,9 +37,12 @@ class GameResultViewController: UIViewController {
 		quizBreakdownTableView.delegate = self
 		quizBreakdownTableView.dataSource = self
 		quizBreakdownTableView.register(QuizBreakdownCell.self, forCellReuseIdentifier: String(describing: QuizBreakdownCell.self))
-		quizBreakdownTableView.rowHeight = UITableView.automaticDimension
-		quizBreakdownTableView.estimatedRowHeight = 100
-		quizBreakdownTableView.allowsSelection = true
+		quizBreakdownTableView.register(QuizBreakdownHeader.self, forHeaderFooterViewReuseIdentifier: String(describing: QuizBreakdownHeader.self))
+		
+		//quizBreakdownTableView.rowHeight = UITableView.automaticDimension
+		//quizBreakdownTableView.estimatedRowHeight = 100
+		quizBreakdownTableView.backgroundColor = .clear
+		//quizBreakdownTableView.allowsSelection = false
 		quizBreakdownTableView.allowsMultipleSelection = false
 	}
 	
@@ -53,7 +56,7 @@ class GameResultViewController: UIViewController {
 	}
 	
 	private func cellToggle(at indexPath: IndexPath){
-		toggledData[indexPath.row] = !toggledData[indexPath.row]
+		isOriginalAnswer[indexPath.row] = !isOriginalAnswer[indexPath.row]
 	}
 }
 
@@ -74,6 +77,7 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		print("Select \(indexPath.section) \(indexPath.row)")
 		guard let cell = tableView.cellForRow(at: indexPath) as? QuizBreakdownCell else { return }
 		let playerAnswer = quiz.playerAnswers[indexPath.row]
 		let question = quiz.questions[indexPath.row]
@@ -81,13 +85,29 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 		tableView.deselectRow(at: indexPath, animated: !playerAnswer.isCorrect)
 		
 		if !playerAnswer.isCorrect {
-			toggledData[indexPath.row] = !toggledData[indexPath.row]
-			if cell.isDisplayingOriginalAnswer {
+			if isOriginalAnswer[indexPath.row] {
 				cell.toggleAnswer(with: question.correctAnswer)
 			}
 			else {
 				cell.toggleAnswer(with: playerAnswer)
 			}
+			isOriginalAnswer[indexPath.row] = !isOriginalAnswer[indexPath.row]
+		}
+	}
+	
+//	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//		if section == 0 { return "Your Answers" }
+//		else { return nil }
+//	}
+	
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: QuizBreakdownHeader.self)) as? QuizBreakdownHeader {
+			header.title.text = quiz.questions.first?.category.description
+			header.contentView.backgroundColor = UIColor.appColor(.black)
+			return header
+		}
+		else {
+			return UITableViewHeaderFooterView()
 		}
 	}
 }

@@ -59,7 +59,6 @@ class GameViewController: UIViewController {
 		let destinationVC = segue.destination as! GameResultViewController
 		destinationVC.quiz = self.quiz
 	}
-
 }
 
 //MARK: - QuizDelegate

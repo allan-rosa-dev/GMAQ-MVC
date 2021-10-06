@@ -346,11 +346,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uo9-Mo-9mx" userLabel="Top StackView">
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uo9-Mo-9mx" userLabel="Top StackView">
                                 <rect key="frame" x="20" y="64" width="374" height="126"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Quiz Results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2c-fx-gZV" userLabel="TitleLabel">
-                                        <rect key="frame" x="73.333333333333329" y="0.0" width="227.33333333333337" height="40.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40.666666666666664"/>
                                         <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="30"/>
                                         <color key="textColor" name="font-color"/>
                                         <nil key="highlightedColor"/>
@@ -364,7 +364,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IM6-fK-3v0">
-                                <rect key="frame" x="20" y="210" width="374" height="446"/>
+                                <rect key="frame" x="0.0" y="210" width="414" height="446"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="q8G-0s-scj" userLabel="Bottom StackView">
@@ -400,15 +400,15 @@
                         <viewLayoutGuide key="safeArea" id="yva-gF-3zQ"/>
                         <color key="backgroundColor" name="background-color"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Uo9-Mo-9mx" secondAttribute="trailing" constant="20" id="09g-Vt-kHi"/>
-                            <constraint firstItem="Uo9-Mo-9mx" firstAttribute="leading" secondItem="6qu-lz-ffU" secondAttribute="leading" constant="20" id="8MM-C4-yrT"/>
+                            <constraint firstItem="yva-gF-3zQ" firstAttribute="trailing" secondItem="Uo9-Mo-9mx" secondAttribute="trailing" constant="20" id="09g-Vt-kHi"/>
+                            <constraint firstItem="Uo9-Mo-9mx" firstAttribute="leading" secondItem="yva-gF-3zQ" secondAttribute="leading" constant="20" id="8MM-C4-yrT"/>
                             <constraint firstItem="IM6-fK-3v0" firstAttribute="top" secondItem="Uo9-Mo-9mx" secondAttribute="bottom" constant="20" id="INL-yq-ctQ"/>
                             <constraint firstItem="Uo9-Mo-9mx" firstAttribute="top" secondItem="yva-gF-3zQ" secondAttribute="top" constant="20" id="KuA-tl-cmc"/>
                             <constraint firstItem="q8G-0s-scj" firstAttribute="leading" secondItem="yva-gF-3zQ" secondAttribute="leading" constant="20" id="Lym-3K-eQD"/>
                             <constraint firstItem="yva-gF-3zQ" firstAttribute="trailing" secondItem="q8G-0s-scj" secondAttribute="trailing" constant="20" id="M70-wy-rGu"/>
-                            <constraint firstItem="yva-gF-3zQ" firstAttribute="trailing" secondItem="IM6-fK-3v0" secondAttribute="trailing" constant="20" id="V0l-HQ-idi"/>
+                            <constraint firstItem="yva-gF-3zQ" firstAttribute="trailing" secondItem="IM6-fK-3v0" secondAttribute="trailing" id="V0l-HQ-idi"/>
                             <constraint firstItem="yva-gF-3zQ" firstAttribute="trailing" secondItem="q8G-0s-scj" secondAttribute="trailing" constant="20" id="WFQ-uL-Z9K"/>
-                            <constraint firstItem="IM6-fK-3v0" firstAttribute="leading" secondItem="yva-gF-3zQ" secondAttribute="leading" constant="20" id="WOH-RU-3fh"/>
+                            <constraint firstItem="IM6-fK-3v0" firstAttribute="leading" secondItem="yva-gF-3zQ" secondAttribute="leading" id="WOH-RU-3fh"/>
                             <constraint firstItem="q8G-0s-scj" firstAttribute="top" secondItem="IM6-fK-3v0" secondAttribute="bottom" constant="20" id="Zgt-VP-48P"/>
                             <constraint firstItem="q8G-0s-scj" firstAttribute="leading" secondItem="yva-gF-3zQ" secondAttribute="leading" constant="20" id="jRw-Zh-5RR"/>
                             <constraint firstItem="yva-gF-3zQ" firstAttribute="bottom" secondItem="q8G-0s-scj" secondAttribute="bottom" constant="20" id="nBb-Zr-ECR"/>
