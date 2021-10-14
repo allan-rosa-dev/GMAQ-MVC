@@ -30,6 +30,7 @@ class GameResultViewController: UIViewController {
 		navigationController?.isNavigationBarHidden = true
 		initializeHideKeyboard()
 		configureTableView()
+		analyzeScore(quiz)
     }
 	
 	// MARK: - Methods
@@ -51,11 +52,21 @@ class GameResultViewController: UIViewController {
 		navigationController?.popToRootViewController(animated: true)
 	}
 	
-	private func analyzeScore(_ score: Int){
-		let evaluation = score/quiz.questions.count
+	private func analyzeScore(_ quiz: Quiz) {
+		// check for highscore
+		// -> OMG you got THE TOP SCORE!! Claim your rightful place at the top of the \(category) hall of fame!
+		// -> Good job! You got a high score in the \(category)!
+		// -> Aww! Too bad! You were just \(minHighScore - score +1) points short of placing in the \(category) hall of fame...
+		// -> You got a negative score??? Hahahahaha - Maybe guess a bit less next time ;)
+		resultsLabel.text = "Your score is \(quiz.score) points!"
+		
+//		let minHighScore = quiz.questions.count
+//		let pointsShort = minHighScore - quiz.score + 1
+//		let deficitString = pointsShort == 1 ? "\(pointsShort) point" : "\(pointsShort) points"
+//		resultsLabel.text = "Aww! Too bad! You were just \(deficitString) short of placing in the \(quiz.questions.first!.category) hall of fame..."
 	}
 	
-	private func cellToggle(at indexPath: IndexPath){
+	private func cellToggle(at indexPath: IndexPath) {
 		isOriginalAnswer[indexPath.row] = !isOriginalAnswer[indexPath.row]
 	}
 }
@@ -69,10 +80,8 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		// create cell
 		let cell = QuizBreakdownCell()
-		
 		cell.configureView(withQuestion: quiz.questions[indexPath.row],
-						   withUserAnswer: quiz.playerAnswers[indexPath.row],
-						   withNumber: indexPath.row + 1)
+						   withUserAnswer: quiz.playerAnswers[indexPath.row])
 		return cell
 	}
 	

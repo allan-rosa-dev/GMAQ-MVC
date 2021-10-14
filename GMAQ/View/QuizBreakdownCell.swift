@@ -15,22 +15,13 @@ class QuizBreakdownCell: UITableViewCell {
 	
 	var isDisplayingOriginalAnswer = true
 	
-	private lazy var informationStackView: UIStackView = {
-		let stackView = UIStackView()
-		stackView.axis = .horizontal
-		stackView.distribution = .equalSpacing
-		stackView.alignment = .fill
-		stackView.spacing = 5
-		
-		return stackView
-	}()
-	
 	private lazy var numberLabel: UILabel = {
 		let label = UILabel()
-		label.numberOfLines = 0
+		label.numberOfLines = 1
 		label.textColor = K.Design.fontColor
 		label.font = UIFont(name: K.Design.fontName, size: 46)
 		label.text = "xd"
+		label.adjustsFontSizeToFitWidth = true
 		
 		return label
 	}()
@@ -94,39 +85,41 @@ class QuizBreakdownCell: UITableViewCell {
 		NSLayoutConstraint.activate([
 			numberLabel.topAnchor.constraint(lessThanOrEqualTo: contentView.topAnchor, constant: Layout.margin),
 			numberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Layout.margin),
-			numberLabel.trailingAnchor.constraint(equalTo: questionTextStackView.leadingAnchor, constant: -Layout.halfMargin),
+			numberLabel.trailingAnchor.constraint(lessThanOrEqualTo: questionTextStackView.leadingAnchor, constant: -Layout.halfMargin),
 			numberLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Layout.margin),
-			numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+			numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+			numberLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.1)
 		])
 		
 		
 		questionTextStackView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			questionTextStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: Layout.margin),
-			questionTextStackView.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor),
+			questionTextStackView.topAnchor.constraint(lessThanOrEqualTo: contentView.topAnchor, constant: Layout.margin),
+			questionTextStackView.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor, constant: Layout.margin),
 			questionTextStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Layout.margin),
 			questionTextStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Layout.margin),
-			questionTextStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-			questionTextStackView.widthAnchor.constraint(equalTo: numberLabel.widthAnchor, multiplier: 10)
+			questionTextStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
 		])
 	}
 	
-	func configureView(withQuestion question: Question, withUserAnswer answer: Answer, withNumber number: Int) {
+	func configureView(withQuestion question: Question, withUserAnswer answer: Answer) {
 		questionLabel.text = question.text
 		answerLabel.text = answer.text
-		numberLabel.text = String(number)
+		
 
 		if answer.isCorrect {
 			backgroundColor = UIColor.appColor(.green)
 			questionLabel.textColor = UIColor.appColor(.black)
 			answerLabel.textColor = UIColor.appColor(.black)
 			numberLabel.textColor = UIColor.appColor(.black)
+			numberLabel.text = "+1" //+ String(question.difficulty.rawValue)
 		}
 		else {
 			backgroundColor = UIColor.appColor(.red)
 			questionLabel.textColor = UIColor.appColor(.white)
 			answerLabel.textColor = UIColor.appColor(.white)
 			numberLabel.textColor = UIColor.appColor(.white)
+			numberLabel.text = "-1" //+ String(question.difficulty.rawValue)
 		}
 	}
 	

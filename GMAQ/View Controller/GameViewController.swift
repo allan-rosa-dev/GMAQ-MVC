@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
 	@IBOutlet weak var answerButton3: UIButton!
 	
 	var quiz = Quiz(from: [])
+	private var isProcessingAnswer = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,6 +27,7 @@ class GameViewController: UIViewController {
 	}
 	
 	private func setupQuestion(){
+		isProcessingAnswer = false
 		quizProgressLabel.text = "Question (\(quiz.currentQuestionIndex+1)/\(quiz.questions.count))"
 		questionTextLabel.text = quiz.currentQuestion.text
 		
@@ -45,6 +47,8 @@ class GameViewController: UIViewController {
 	}
 	
 	@IBAction func answerButtonClicked(_ sender: UIButton) {
+		guard !isProcessingAnswer else { return }
+		isProcessingAnswer = true
 		let playerAnswer = quiz.currentQuestion.answers[sender.tag]
 		let color = playerAnswer.isCorrect ? UIColor.appColor(.green) : UIColor.appColor(.red)
 		sender.provideVisualFeedback(color: color)
