@@ -64,6 +64,7 @@ class GameSettingsViewController: UIViewController {
 	@IBAction func textFieldValueChanged(_ sender: UITextField) {
 		guard let text = sender.text else { return }
 		guard let value = Float(text) else { return }
+		quizSize = Int(text) ?? quizSize
 		quizSizeSlider.setValue(value, animated: true)
 	}
 	
