@@ -36,10 +36,6 @@ class QuizBreakdownHeader: UITableViewHeaderFooterView {
 	
 	func setupConstraints(){
 		NSLayoutConstraint.activate([
-//			title.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 4),
-//			title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-//			title.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -4),
-//			title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
 			title.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
 			title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
 		])

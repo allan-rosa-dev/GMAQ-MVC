@@ -18,10 +18,9 @@ class QuizBreakdownCell: UITableViewCell {
 	private lazy var informationStackView: UIStackView = {
 		let stackView = UIStackView()
 		stackView.axis = .horizontal
-		stackView.distribution = .fillProportionally
+		stackView.distribution = .equalSpacing
 		stackView.alignment = .fill
 		stackView.spacing = 5
-		stackView.translatesAutoresizingMaskIntoConstraints = false
 		
 		return stackView
 	}()
@@ -42,7 +41,6 @@ class QuizBreakdownCell: UITableViewCell {
 		stackView.distribution = .equalSpacing
 		stackView.alignment = .fill
 		stackView.spacing = Layout.halfMargin
-		stackView.translatesAutoresizingMaskIntoConstraints = false
 		
 		return stackView
 	}()
@@ -54,7 +52,7 @@ class QuizBreakdownCell: UITableViewCell {
 		label.font = UIFont(name: K.Design.fontNameBold, size: 16)
 		label.text = "Lorem ipsum "
 		label.textAlignment = .justified
-		label.preferredMaxLayoutWidth = questionTextStackView.frame.width
+		//label.preferredMaxLayoutWidth = questionTextStackView.frame.width
 		
 		return label
 	}()
@@ -66,7 +64,7 @@ class QuizBreakdownCell: UITableViewCell {
 		label.font = UIFont(name: K.Design.fontNameBold, size: 16)
 		label.text = "Fake"
 		label.textAlignment = .justified
-		label.preferredMaxLayoutWidth = questionTextStackView.frame.width*1.5
+		//label.preferredMaxLayoutWidth = questionTextStackView.frame.width*1.5
 		
 		return label
 	}()
@@ -86,28 +84,30 @@ class QuizBreakdownCell: UITableViewCell {
 	private func buildViewHierarchy() {
 		questionTextStackView.addArrangedSubview(questionLabel)
 		questionTextStackView.addArrangedSubview(answerLabel)
-
-//		informationStackView.addArrangedSubview(questionTextStackView)
-//		informationStackView.addArrangedSubview(numberLabel)
-
-//		contentView.addSubview(informationStackView)
+		
+		contentView.addSubview(numberLabel)
 		contentView.addSubview(questionTextStackView)
 	}
 	
 	private func setupConstraints() {
+		numberLabel.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			numberLabel.topAnchor.constraint(lessThanOrEqualTo: contentView.topAnchor, constant: Layout.margin),
+			numberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Layout.margin),
+			numberLabel.trailingAnchor.constraint(equalTo: questionTextStackView.leadingAnchor, constant: -Layout.halfMargin),
+			numberLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Layout.margin),
+			numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+		])
 		
+		
+		questionTextStackView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			questionTextStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: Layout.margin),
-			questionTextStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Layout.margin),
+			questionTextStackView.leadingAnchor.constraint(equalTo: numberLabel.trailingAnchor),
 			questionTextStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Layout.margin),
 			questionTextStackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -Layout.margin),
 			questionTextStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-			//questionTextStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-		])
-		
-		NSLayoutConstraint.activate([
-			answerLabel.leadingAnchor.constraint(equalTo: questionTextStackView.leadingAnchor),
-			answerLabel.trailingAnchor.constraint(equalTo: questionTextStackView.trailingAnchor)
+			questionTextStackView.widthAnchor.constraint(equalTo: numberLabel.widthAnchor, multiplier: 10)
 		])
 	}
 	

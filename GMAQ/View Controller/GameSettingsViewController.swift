@@ -15,7 +15,7 @@ class GameSettingsViewController: UIViewController {
 	
 	var categoryPickerView = UIPickerView()
 	var quiz = Quiz(from: [])
-	private var quizSize = 1
+	private var quizSize: Int = 1
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,7 @@ class GameSettingsViewController: UIViewController {
 		let quizDifficulty = QuestionDifficulty.any
 		
 		print("Asking API for Quiz: \(quizSize) questions of \(quizCategory.description).")
+		/*
 		OpentdbAPIService.shared.createQuiz(numberOfQuestions: quizSize,
 											category: quizCategory,
 											difficulty: quizDifficulty) { quiz in
@@ -54,18 +55,29 @@ class GameSettingsViewController: UIViewController {
 				self.performSegue(withIdentifier: K.App.View.Segue.gameSettingsToGame, sender: self)
 			}
 		}
+		*/
+		
+		if let path = Bundle.main.path(forResource: "SampleQuiz", ofType: "json") {
+			do {
+				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+				let questionQuery = try JSONDecoder().decode(QuestionQuery.self, from: data)
+				var questions: [Question] = []
+				questionQuery.results.forEach { questionResult in
+					questions.append(Question(questionResult))
+				}
+				quiz = Quiz(from: questions)
+				performSegue(withIdentifier: K.App.View.Segue.gameSettingsToGame, sender: self)
+				
+			} catch {
+				print("error decoding question")
+			}
+		}
+		else { print("path error") }
 	}
 	
 	@IBAction func quizSizeSliderValueHasChanged(_ sender: UISlider) {
 		quizSize = Int(sender.value)
 		quizSizeTextField.text = String(quizSize)
-	}
-	
-	@IBAction func textFieldValueChanged(_ sender: UITextField) {
-		guard let text = sender.text else { return }
-		guard let value = Float(text) else { return }
-		quizSize = Int(text) ?? quizSize
-		quizSizeSlider.setValue(value, animated: true)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -132,5 +144,6 @@ extension GameSettingsViewController: UITextFieldDelegate {
 			return
 		}
 		quizSizeSlider.setValue(value, animated: true)
+		quizSize = Int(text) ?? quizSize
 	}
 }

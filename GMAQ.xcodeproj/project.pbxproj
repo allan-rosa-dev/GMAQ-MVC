@@ -31,6 +31,8 @@
 		AC70B96B26CB67B2001813D7 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96A26CB67B2001813D7 /* Quiz.swift */; };
 		AC70B96D26CB6940001813D7 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC70B96C26CB6940001813D7 /* Answer.swift */; };
 		AC732DEE26C5B78F0054A64C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC732DED26C5B78F0054A64C /* Service.swift */; };
+		ACAB8C4B2718B4580025947C /* SampleQuiz.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAB8C4A2718B4580025947C /* SampleQuiz.json */; };
+		ACAB8C4C2718BB040025947C /* SampleQuiz.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAB8C4A2718B4580025947C /* SampleQuiz.json */; };
 		ACC7040626D36BAC006AD10D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ACC7040526D36BAC006AD10D /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,7 @@
 		AC70B96A26CB67B2001813D7 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		AC70B96C26CB6940001813D7 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		AC732DED26C5B78F0054A64C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		ACAB8C4A2718B4580025947C /* SampleQuiz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleQuiz.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 				AC2362C726C5A28500BB92BB /* Common */,
 				AC2362A026C5A27900BB92BB /* Assets.xcassets */,
 				AC2362A526C5A27900BB92BB /* Info.plist */,
+				ACAB8C4A2718B4580025947C /* SampleQuiz.json */,
 				AC2362D326C5A64A00BB92BB /* API Service */,
 				AC2362C826C5A37800BB92BB /* Model */,
 				AC2362C926C5A38900BB92BB /* View */,
@@ -335,6 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACAB8C4C2718BB040025947C /* SampleQuiz.json in Resources */,
 				AC2362A426C5A27900BB92BB /* LaunchScreen.storyboard in Resources */,
 				AC2362A126C5A27900BB92BB /* Assets.xcassets in Resources */,
 				AC23629F26C5A27800BB92BB /* Main.storyboard in Resources */,
@@ -345,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACAB8C4B2718B4580025947C /* SampleQuiz.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

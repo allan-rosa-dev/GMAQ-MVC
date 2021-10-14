@@ -17,7 +17,7 @@ struct OpentdbAPIService {
 	func createQuiz(numberOfQuestions: Int, category: QuestionCategory, difficulty: QuestionDifficulty, completion: @escaping (Quiz) -> ()) {
 
 		var url = apiURL + "&amount=\(numberOfQuestions)"
-		url += "&category=\(category.rawValue + 9)" // reason for +9: General Knowledge is id 9 under the API, and category here starting index is 0
+		url += "&category=\(category.rawValue + 9)" // reason for +9: General Knowledge is id 9 under the API, and category in our model starts at index 0
 		
 		if difficulty != .any {
 			url += "&difficulty=\(difficulty.description)"
@@ -26,7 +26,7 @@ struct OpentdbAPIService {
 		fetchData(urlString: url) { (result: Result<QuestionQuery,Error>) in
 			switch result {
 				case .success(let questionQuery):
-					var questions:[Question] = []
+					var questions: [Question] = []
 					questionQuery.results.forEach { questionResult in
 						questions.append(Question(questionResult))
 					}
@@ -40,7 +40,6 @@ struct OpentdbAPIService {
 		}
 	}
 }
-
 
 // MARK: - fetchData
 /// Fetches and decodes JSON data from a given *urlString*, returning a Swift5 Result object
