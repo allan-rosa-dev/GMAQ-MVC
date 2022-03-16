@@ -56,7 +56,7 @@ class GameSettingsViewController: UIViewController {
 			}
 		}
 		*/
-		
+		/* using a local json */
 		if let path = Bundle.main.path(forResource: "SampleQuiz", ofType: "json") {
 			do {
 				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)

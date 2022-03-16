@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dIJ-ha-HUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dIJ-ha-HUr">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -456,28 +457,8 @@
                                     <constraint firstItem="aaj-C8-qxL" firstAttribute="width" secondItem="uiz-Zb-z3p" secondAttribute="width" multiplier="2" id="TA3-de-5yC"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="s9T-Uo-IuB">
-                                <rect key="frame" x="20" y="207.66666666666666" width="374" height="37"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HiP-9E-Qlq">
-                                        <rect key="frame" x="0.0" y="0.0" width="117.33333333333333" height="37"/>
-                                        <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="24"/>
-                                        <color key="textColor" name="font-color"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Anime &amp; Manga" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-Rv-y1Y">
-                                        <rect key="frame" x="139.33333333333337" y="0.0" width="234.66666666666663" height="37"/>
-                                        <color key="textColor" name="font-color"/>
-                                        <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="HiP-9E-Qlq" firstAttribute="width" secondItem="HOE-Rv-y1Y" secondAttribute="width" multiplier="0.5" id="jnt-M9-z53"/>
-                                </constraints>
-                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Odt-tf-Dnh">
-                                <rect key="frame" x="20" y="264.66666666666674" width="374" height="451.33333333333326"/>
+                                <rect key="frame" x="0.0" y="187.66666666666669" width="414" height="548.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -485,23 +466,23 @@
                         <color key="backgroundColor" name="background-color"/>
                         <constraints>
                             <constraint firstItem="go0-JN-jK9" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" id="56D-K6-f7S"/>
-                            <constraint firstItem="VnP-SW-zzW" firstAttribute="trailing" secondItem="s9T-Uo-IuB" secondAttribute="trailing" constant="20" id="5Zk-mO-xN8"/>
                             <constraint firstItem="go0-JN-jK9" firstAttribute="top" secondItem="VnP-SW-zzW" secondAttribute="top" constant="20" id="6b5-Pw-FcF"/>
+                            <constraint firstItem="Odt-tf-Dnh" firstAttribute="top" secondItem="go0-JN-jK9" secondAttribute="bottom" constant="20" id="BHI-tN-Vak"/>
                             <constraint firstItem="uiz-Zb-z3p" firstAttribute="height" secondItem="VnP-SW-zzW" secondAttribute="height" multiplier="0.15" id="GJ1-Ur-R2B"/>
-                            <constraint firstItem="s9T-Uo-IuB" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" constant="20" id="HbV-cp-ABP"/>
-                            <constraint firstItem="Odt-tf-Dnh" firstAttribute="top" secondItem="s9T-Uo-IuB" secondAttribute="bottom" constant="20" id="Kb4-h3-arY"/>
-                            <constraint firstItem="Odt-tf-Dnh" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" constant="20" id="MOr-Iy-h10"/>
-                            <constraint firstItem="VnP-SW-zzW" firstAttribute="bottom" secondItem="Odt-tf-Dnh" secondAttribute="bottom" constant="20" id="Pal-po-s7u"/>
-                            <constraint firstItem="s9T-Uo-IuB" firstAttribute="top" secondItem="go0-JN-jK9" secondAttribute="bottom" constant="40" id="a4s-yC-sDd"/>
+                            <constraint firstItem="Odt-tf-Dnh" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" id="MOr-Iy-h10"/>
+                            <constraint firstItem="VnP-SW-zzW" firstAttribute="bottom" secondItem="Odt-tf-Dnh" secondAttribute="bottom" id="Pal-po-s7u"/>
                             <constraint firstAttribute="trailing" secondItem="go0-JN-jK9" secondAttribute="trailing" id="fYa-VO-dqq"/>
-                            <constraint firstItem="VnP-SW-zzW" firstAttribute="trailing" secondItem="Odt-tf-Dnh" secondAttribute="trailing" constant="20" id="lkd-AH-V4l"/>
+                            <constraint firstItem="VnP-SW-zzW" firstAttribute="trailing" secondItem="Odt-tf-Dnh" secondAttribute="trailing" id="lkd-AH-V4l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v0F-23-uDa"/>
+                    <connections>
+                        <outlet property="tableView" destination="Odt-tf-Dnh" id="0YY-l5-4Mz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nip-61-wfP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3061" y="743"/>
+            <point key="canvasLocation" x="3060.8695652173915" y="742.66304347826087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Czv-h2-kbo">

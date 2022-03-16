@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - String
 extension String {
 	func base64Encoded() -> String? {
 		return data(using: .utf8)?.base64EncodedString()
@@ -18,15 +19,17 @@ extension String {
 	}
 }
 
-enum AssetsColor {
-	case red
-	case green
-	case blue
-	case white
-	case black
-}
-
+// MARK: - UIColor
 extension UIColor {
+	
+	enum AssetsColor {
+		case red
+		case green
+		case blue
+		case white
+		case black
+	}
+	
 	static func appColor(_ name: AssetsColor) -> UIColor? {
 		switch name {
 			case .red:
@@ -43,6 +46,9 @@ extension UIColor {
 	}
 }
 
+
+
+// MARK: - UIButton
 extension UIButton {
 	func configure(with answer: Answer){
 		self.setTitle(answer.text, for: .normal)
@@ -52,7 +58,7 @@ extension UIButton {
 	}
 }
 
-
+// MARK: - UIView
 extension UIView {
 	func provideVisualFeedback(duration: TimeInterval = 0.2, scale: CGFloat = 0.8, color: UIColor?) {
 		// Shrink
@@ -74,10 +80,12 @@ extension UIView {
 	}
 }
 
+// MARK: - UIViewController
 extension UIViewController {
+	// Keyboard handlers
 	func initializeHideKeyboard(){
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-		view.addGestureRecognizer(tap)
+		let tapSelf: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+		view.addGestureRecognizer(tapSelf)
 	}
 	
 	@objc private func dismissKeyboard(){

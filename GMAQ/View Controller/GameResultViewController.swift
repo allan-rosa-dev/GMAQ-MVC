@@ -16,58 +16,120 @@ class GameResultViewController: UIViewController {
 		}
 	}
 	var isOriginalAnswer: [Bool] = []
+	var playerGotHighScore: Bool = false
 	// var quiz = Quiz(from: [])
 	
-	@IBOutlet weak var resultsLabel: UILabel!
+	@IBOutlet weak var resultsLabel:  UILabel!
 	@IBOutlet weak var quizBreakdownTableView: UITableView!
 	@IBOutlet weak var nameTextField: UITextField!
 	
 	//MARK: - Lifecyle
-	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		navigationController?.isNavigationBarHidden = true
+		nameTextField.delegate = self
 		initializeHideKeyboard()
 		configureTableView()
 		analyzeScore(quiz)
+		debugStuff()
     }
 	
 	// MARK: - Methods
+	func debugStuff(){
+		let gesture = UITapGestureRecognizer()
+		gesture.numberOfTapsRequired = 4
+		gesture.addTarget(self, action: #selector(displayHighScoreDialog))
+		view.addGestureRecognizer(gesture)
+	}
+	
+	@objc func displayHighScoreDialog(){
+		print("DevCheat!")
+		let alert = UIAlertController(title: "Reset High Score?", message: nil, preferredStyle: .actionSheet)
+		let resetAction = UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
+			UserDefaults.standard.set(0, forKey: K.App.Defaults.quizHighScore)
+		})
+		let setHighScoreAction = UIAlertAction(title: "Set 999 High Score", style: .default) { _ in
+			self.quiz.score = 999
+			self.analyzeScore(self.quiz)
+		}
+		alert.addAction(resetAction)
+		alert.addAction(setHighScoreAction)
+		present(alert, animated: true)
+	}
+	
 	fileprivate func configureTableView(){
 		quizBreakdownTableView.delegate = self
 		quizBreakdownTableView.dataSource = self
 		quizBreakdownTableView.register(QuizBreakdownCell.self, forCellReuseIdentifier: String(describing: QuizBreakdownCell.self))
 		quizBreakdownTableView.register(QuizBreakdownHeader.self, forHeaderFooterViewReuseIdentifier: String(describing: QuizBreakdownHeader.self))
 		
-		//quizBreakdownTableView.rowHeight = UITableView.automaticDimension
-		//quizBreakdownTableView.estimatedRowHeight = 100
 		quizBreakdownTableView.backgroundColor = .clear
-		//quizBreakdownTableView.allowsSelection = false
 		quizBreakdownTableView.allowsMultipleSelection = false
 	}
 	
 	@IBAction func buttonClicked(_ sender: UIButton) {
 		//TODO: - Segue to highscores with name (from nameTextField and score)
-		navigationController?.popToRootViewController(animated: true)
+		guard let playerName = nameTextField.text else { return }
+		let alertTitle, alertMessage: String
+		
+		if playerGotHighScore {
+			alertTitle = "Confirm your name"
+			alertMessage = "Is the name \(playerName) correct?"
+		}
+		else {
+			alertTitle = "Return to home screen?"
+			alertMessage = ""
+		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+			self.dismiss(animated: true, completion: nil)
+		}
+		let confirmAction = UIAlertAction(title: "Confirm", style: .default){ _ in
+			if self.playerGotHighScore {
+				print("ADDING HIGH SCORE: \(playerName) got \(self.quiz.score) points!") //todo
+				let newHighScore = ScoreRecord(score: self.quiz.score, username: playerName)
+				
+			}
+			self.returnToHome()
+		}
+		let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+		alert.addAction(cancelAction)
+		alert.addAction(confirmAction)
+		
+		present(alert, animated: true, completion: nil)
 	}
 	
 	private func analyzeScore(_ quiz: Quiz) {
 		// check for highscore
-		// -> OMG you got THE TOP SCORE!! Claim your rightful place at the top of the \(category) hall of fame!
-		// -> Good job! You got a high score in the \(category)!
-		// -> Aww! Too bad! You were just \(minHighScore - score +1) points short of placing in the \(category) hall of fame...
-		// -> You got a negative score??? Hahahahaha - Maybe guess a bit less next time ;)
-		resultsLabel.text = "Your score is \(quiz.score) points!"
+		ScoreManager.shared.load(category: quiz.currentQuestion.category)
+		let currentHighScore = UserDefaults.standard.integer(forKey: K.App.Defaults.quizHighScore)
+		print("Comparing currentHighScore [\(currentHighScore)] to score [\(quiz.score)]")
 		
-//		let minHighScore = quiz.questions.count
-//		let pointsShort = minHighScore - quiz.score + 1
-//		let deficitString = pointsShort == 1 ? "\(pointsShort) point" : "\(pointsShort) points"
-//		resultsLabel.text = "Aww! Too bad! You were just \(deficitString) short of placing in the \(quiz.questions.first!.category) hall of fame..."
+		if quiz.score > currentHighScore {
+			resultsLabel.text = "You've got a highscore, with \(quiz.score) points!"
+			nameTextField.isHidden = false
+			playerGotHighScore = true
+			
+			ScoreManager.shared.save(category: quiz.currentQuestion.category)
+		}
+		else {
+			resultsLabel.text = "Your score is \(quiz.score) points!"
+			nameTextField.isHidden = true
+			playerGotHighScore = false
+		}
 	}
 	
 	private func cellToggle(at indexPath: IndexPath) {
 		isOriginalAnswer[indexPath.row] = !isOriginalAnswer[indexPath.row]
+	}
+	
+	//MARK: - Navigation
+	private func returnToHome(){
+		navigationController?.popToRootViewController(animated: true)
+	}
+	
+	private func goToHighScores(newHighScore score: Int, forUser user: String){
+		returnToHome()
 	}
 }
 
@@ -117,6 +179,32 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 		}
 		else {
 			return UITableViewHeaderFooterView()
+		}
+	}
+}
+
+//MARK: - UITextFieldDelegate
+extension GameResultViewController: UITextFieldDelegate {
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		textField.text = ""
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		prepareForEndEditing(textField)
+		textField.resignFirstResponder()
+		return true
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		prepareForEndEditing(textField)
+		textField.resignFirstResponder()
+	}
+	
+	//MARK: - Helper functions
+	func prepareForEndEditing(_ textField: UITextField){
+		guard let text = textField.text else {
+			textField.text = "Insert your name"
+			return
 		}
 	}
 }

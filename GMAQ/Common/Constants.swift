@@ -10,8 +10,8 @@ import UIKit
 struct K {
 	struct Design {
 		// Mapped in Assets
-		static let fontName = "Devanagari Sangam MN"
-		static let fontNameBold = "Devanagari Sangam MN-Bold"
+		static let fontName = "DevanagariSangamMN"
+		static let fontNameBold = "DevanagariSangamMN-Bold"
 		static let fontColor = UIColor(named: "font-color")
 		static let backgroundColor = UIColor(named: "background-color")
 	}
@@ -20,6 +20,7 @@ struct K {
 		struct Defaults {
 			static let lastQuizCategory = QuestionCategory.animeAndManga.description
 			static let lastQuizSize = 10
+			static let quizHighScore = "quizHighScore"
 		}
 		
 		struct View {
