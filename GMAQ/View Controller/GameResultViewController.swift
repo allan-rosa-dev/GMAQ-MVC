@@ -17,7 +17,6 @@ class GameResultViewController: UIViewController {
 	}
 	var isOriginalAnswer: [Bool] = []
 	var playerGotHighScore: Bool = false
-	// var quiz = Quiz(from: [])
 	
 	@IBOutlet weak var resultsLabel:  UILabel!
 	@IBOutlet weak var quizBreakdownTableView: UITableView!
@@ -47,7 +46,7 @@ class GameResultViewController: UIViewController {
 		print("DevCheat!")
 		let alert = UIAlertController(title: "Reset High Score?", message: nil, preferredStyle: .actionSheet)
 		let resetAction = UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
-			UserDefaults.standard.set(0, forKey: K.App.Defaults.quizHighScore)
+			ScoreManager.shared.clear(category: self.quiz.currentQuestion.category)
 		})
 		let setHighScoreAction = UIAlertAction(title: "Set 999 High Score", style: .default) { _ in
 			self.quiz.score = 999
@@ -87,9 +86,9 @@ class GameResultViewController: UIViewController {
 		let confirmAction = UIAlertAction(title: "Confirm", style: .default){ _ in
 			if self.playerGotHighScore {
 				print("ADDING HIGH SCORE: \(playerName) got \(self.quiz.score) points!") //todo
-				let newHighScore = ScoreRecord(score: self.quiz.score, username: playerName)
-				
+				ScoreManager.shared.addRecord(score: self.quiz.score, username: playerName, to: self.quiz.currentQuestion.category)
 			}
+			ScoreManager.shared.save(category: self.quiz.currentQuestion.category)
 			self.returnToHome()
 		}
 		let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
@@ -101,19 +100,16 @@ class GameResultViewController: UIViewController {
 	
 	private func analyzeScore(_ quiz: Quiz) {
 		// check for highscore
-		ScoreManager.shared.load(category: quiz.currentQuestion.category)
-		let currentHighScore = UserDefaults.standard.integer(forKey: K.App.Defaults.quizHighScore)
-		print("Comparing currentHighScore [\(currentHighScore)] to score [\(quiz.score)]")
-		
-		if quiz.score > currentHighScore {
+		let cutoffScore = ScoreManager.shared.highScoreCutoff(for: quiz.currentQuestion.category)
+		if quiz.score > cutoffScore {
 			resultsLabel.text = "You've got a highscore, with \(quiz.score) points!"
+			print(resultsLabel.text!)
 			nameTextField.isHidden = false
 			playerGotHighScore = true
-			
-			ScoreManager.shared.save(category: quiz.currentQuestion.category)
 		}
 		else {
-			resultsLabel.text = "Your score is \(quiz.score) points!"
+			resultsLabel.text = "Your score is \(quiz.score) points!\nYou were \(cutoffScore - quiz.score + 1) points short of making it :("
+			print(resultsLabel.text!)
 			nameTextField.isHidden = true
 			playerGotHighScore = false
 		}

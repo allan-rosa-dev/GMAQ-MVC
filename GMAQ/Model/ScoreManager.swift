@@ -16,10 +16,18 @@ class ScoreManager {
 	private init(){}
 	
 	// MARK: - Methods
+	func highScoreCutoff(for category: QuestionCategory) -> Int {
+		guard let scoreboard = scoreboards[category] else {
+			preload(category);
+			return highScoreCutoff(for: category) }
+		return scoreboard.scores.last?.score ?? 0
+	}
+	
 	func addRecord(score: Int, username: String, to category: QuestionCategory){
 		// a scoreboard for said category already exists
 		if let scoreboard = scoreboards[category] {
-			
+			let newScore = ScoreRecord(score: score, username: username)
+			scoreboard.add(newScore)
 		}
 		// scoreboard doesnt exist yet
 		else {
@@ -30,7 +38,11 @@ class ScoreManager {
 		}
 	}
 	
-	func load(category: QuestionCategory){
+	func clear(category: QuestionCategory){
+		scoreboards[category]?.scores = []
+	}
+	
+	private func preload(_ category: QuestionCategory){
 		if let userDocumentsPath = FileManager.default.urls(for: .documentDirectory,
 															 in: .userDomainMask).first {
 			let fileName = generateFileName(for: category)
@@ -38,14 +50,29 @@ class ScoreManager {
 			print("Loading file [\(fileName)] in [\(fileUrl)]")
 			do {
 				let data = try Data(contentsOf: fileUrl)
-				let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
-				
-				scoreboards[category] = scoreboard
+				//let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
+				//scoreboards[category] = scoreboard
+			}
+			catch CocoaError.fileReadNoSuchFile {
+				print("Cant read file! Creating new scoreboard for category: \(category)")
+				scoreboards[category] = Scoreboard(category: category.description, scores: [])
+				save(category: category)
 			}
 			catch {
 				print("Failed to load object data: \(error)")
 			}
+		} else {
+			print("Error creating path! Creating new scoreboard entry for \(category)")
+			scoreboards[category] = Scoreboard(category: category.description, scores: [])
 		}
+	}
+	
+	func load(category: QuestionCategory){
+		guard let scoreboard = scoreboards[category] else { preload(category); return }
+		guard !scoreboard.scores.isEmpty else { preload(category); return }
+		
+		print("Category \(category.description) is loaded:")
+		print(scoreboard.scores)
 	}
 	
 	func save(category: QuestionCategory){
@@ -75,7 +102,7 @@ class ScoreManager {
 	private func generateFileName(for category: QuestionCategory) -> String {
 		let filePrefix = "highscore_"
 		let fileExt = ".json"
-		return filePrefix + category.description + fileExt
+		return filePrefix + category.description.trimmingCharacters(in: .whitespaces) + fileExt
 	}
 	
 }
