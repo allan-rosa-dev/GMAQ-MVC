@@ -43,10 +43,9 @@ class GameSettingsViewController: UIViewController {
 	
 	@IBAction func startQuizButtonPressed(_ sender: Any) {
 		guard let quizCategory = QuestionCategory(rawValue: categoryPickerView.selectedRow(inComponent: 0)) else { return }
-		let quizDifficulty = QuestionDifficulty.any
+		 let quizDifficulty = QuestionDifficulty.any
+		// print("Asking API for Quiz: \(quizSize) questions of \(quizCategory.description).")
 		
-		print("Asking API for Quiz: \(quizSize) questions of \(quizCategory.description).")
-		/*
 		OpentdbAPIService.shared.createQuiz(numberOfQuestions: quizSize,
 											category: quizCategory,
 											difficulty: quizDifficulty) { quiz in
@@ -55,24 +54,24 @@ class GameSettingsViewController: UIViewController {
 				self.performSegue(withIdentifier: K.App.View.Segue.gameSettingsToGame, sender: self)
 			}
 		}
-		*/
+		
 		/* using a local json */
-		if let path = Bundle.main.path(forResource: "SampleQuiz", ofType: "json") {
-			do {
-				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-				let questionQuery = try JSONDecoder().decode(QuestionQuery.self, from: data)
-				var questions: [Question] = []
-				questionQuery.results.forEach { questionResult in
-					questions.append(Question(questionResult))
-				}
-				quiz = Quiz(from: questions)
-				performSegue(withIdentifier: K.App.View.Segue.gameSettingsToGame, sender: self)
-				
-			} catch {
-				print("error decoding question")
-			}
-		}
-		else { print("path error") }
+//		if let path = Bundle.main.path(forResource: "SampleQuiz", ofType: "json") {
+//			do {
+//				let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//				let questionQuery = try JSONDecoder().decode(QuestionQuery.self, from: data)
+//				var questions: [Question] = []
+//				questionQuery.results.forEach { questionResult in
+//					questions.append(Question(questionResult))
+//				}
+//				quiz = Quiz(from: questions)
+//				performSegue(withIdentifier: K.App.View.Segue.gameSettingsToGame, sender: self)
+//
+//			} catch {
+//				print("error decoding question")
+//			}
+//		}
+//		else { print("path error") }
 	}
 	
 	@IBAction func quizSizeSliderValueHasChanged(_ sender: UISlider) {

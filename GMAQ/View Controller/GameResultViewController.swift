@@ -46,7 +46,7 @@ class GameResultViewController: UIViewController {
 		print("DevCheat!")
 		let alert = UIAlertController(title: "Reset High Score?", message: nil, preferredStyle: .actionSheet)
 		let resetAction = UIAlertAction(title: "Reset", style: .destructive, handler: { _ in
-			ScoreManager.shared.clear(category: self.quiz.currentQuestion.category)
+			ScoreManager.shared.clear(category: self.quiz.category)
 		})
 		let setHighScoreAction = UIAlertAction(title: "Set 999 High Score", style: .default) { _ in
 			self.quiz.score = 999
@@ -74,7 +74,7 @@ class GameResultViewController: UIViewController {
 		
 		if playerGotHighScore {
 			alertTitle = "Confirm your name"
-			alertMessage = "Is the name \(playerName) correct?"
+			alertMessage = "Is the name [\(playerName)] correct?"
 		}
 		else {
 			alertTitle = "Return to home screen?"
@@ -86,9 +86,9 @@ class GameResultViewController: UIViewController {
 		let confirmAction = UIAlertAction(title: "Confirm", style: .default){ _ in
 			if self.playerGotHighScore {
 				print("ADDING HIGH SCORE: \(playerName) got \(self.quiz.score) points!") //todo
-				ScoreManager.shared.addRecord(score: self.quiz.score, username: playerName, to: self.quiz.currentQuestion.category)
+				ScoreManager.shared.addRecord(score: self.quiz.score, username: playerName, to: self.quiz.category)
 			}
-			ScoreManager.shared.save(category: self.quiz.currentQuestion.category)
+			ScoreManager.shared.save(category: self.quiz.category)
 			self.returnToHome()
 		}
 		let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
@@ -100,7 +100,7 @@ class GameResultViewController: UIViewController {
 	
 	private func analyzeScore(_ quiz: Quiz) {
 		// check for highscore
-		let cutoffScore = ScoreManager.shared.highScoreCutoff(for: quiz.currentQuestion.category)
+		let cutoffScore = ScoreManager.shared.highScoreCutoff(for: quiz.category)
 		if quiz.score > cutoffScore {
 			resultsLabel.text = "You've got a highscore, with \(quiz.score) points!"
 			print(resultsLabel.text!)
@@ -144,7 +144,6 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		print("Select \(indexPath.section) \(indexPath.row)")
 		guard let cell = tableView.cellForRow(at: indexPath) as? QuizBreakdownCell else { return }
 		let playerAnswer = quiz.playerAnswers[indexPath.row]
 		let question = quiz.questions[indexPath.row]
@@ -161,11 +160,6 @@ extension GameResultViewController: UITableViewDelegate, UITableViewDataSource {
 			isOriginalAnswer[indexPath.row] = !isOriginalAnswer[indexPath.row]
 		}
 	}
-	
-//	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//		if section == 0 { return "Your Answers" }
-//		else { return nil }
-//	}
 	
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: QuizBreakdownHeader.self)) as? QuizBreakdownHeader {

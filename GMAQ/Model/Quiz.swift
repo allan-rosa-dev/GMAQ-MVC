@@ -13,6 +13,7 @@ protocol QuizDelegate {
 
 class Quiz {
 	let questions: [Question]
+	let category: QuestionCategory
 	var score: Int
 	var currentQuestionIndex: Int
 	var playerAnswers: [Answer]
@@ -29,6 +30,7 @@ class Quiz {
 	
 	init(from questions: [Question]){
 		self.questions = questions
+		self.category = questions.first?.category ?? QuestionCategory.any
 		self.score = 0
 		self.currentQuestionIndex = 0
 		self.playerAnswers = []

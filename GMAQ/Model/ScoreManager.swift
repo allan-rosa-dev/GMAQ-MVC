@@ -10,7 +10,7 @@ import Foundation
 class ScoreManager {
 	// MARK: - Properties
 	static let shared = ScoreManager()
-	private var scoreboards: [QuestionCategory: Scoreboard] = [:]
+	private(set) var scoreboards: [QuestionCategory: Scoreboard] = [:]
 	
 	// MARK: - Init
 	private init(){}
@@ -47,14 +47,13 @@ class ScoreManager {
 															 in: .userDomainMask).first {
 			let fileName = generateFileName(for: category)
 			let fileUrl = userDocumentsPath.appendingPathComponent(fileName)
-			print("Loading file [\(fileName)] in [\(fileUrl)]")
 			do {
 				let data = try Data(contentsOf: fileUrl)
-				//let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
-				//scoreboards[category] = scoreboard
+				let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
+				scoreboards[category] = scoreboard
 			}
 			catch CocoaError.fileReadNoSuchFile {
-				print("Cant read file! Creating new scoreboard for category: \(category)")
+				// print("Cant read file! Creating new scoreboard for category: \(category)")
 				scoreboards[category] = Scoreboard(category: category.description, scores: [])
 				save(category: category)
 			}
@@ -70,7 +69,6 @@ class ScoreManager {
 	func load(category: QuestionCategory){
 		guard let scoreboard = scoreboards[category] else { preload(category); return }
 		guard !scoreboard.scores.isEmpty else { preload(category); return }
-		
 		print("Category \(category.description) is loaded:")
 		print(scoreboard.scores)
 	}
@@ -102,7 +100,8 @@ class ScoreManager {
 	private func generateFileName(for category: QuestionCategory) -> String {
 		let filePrefix = "highscore_"
 		let fileExt = ".json"
-		return filePrefix + category.description.trimmingCharacters(in: .whitespaces) + fileExt
+		let categoryName = category.description.replacingOccurrences(of: " ", with: "")
+		return filePrefix + categoryName + fileExt
 	}
 	
 }

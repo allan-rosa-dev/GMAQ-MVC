@@ -77,7 +77,7 @@ enum QuestionCategory: Int, CaseIterable, CustomStringConvertible {
 		switch self {
 			case .generalKnowledge: return "General Knowledge"
 			case .books: return "Books"
-			case .film: return "Films"
+			case .film: return "Film"
 			case .music: return "Music"
 			case .musicalsAndTheatres: return "Musicals & Theatres"
 			case .television: return "Television"
@@ -98,7 +98,7 @@ enum QuestionCategory: Int, CaseIterable, CustomStringConvertible {
 			case .comics: return "Comics"
 			case .gadgets: return "Gadgets"
 			case .animeAndManga: return "Japanese Anime & Manga"
-			case .cartoonAndAnimations: return "Cartoon & Animation"
+			case .cartoonAndAnimations: return "Cartoon & Animations"
 			case .any: return "Any Category"
 		}
 	}
