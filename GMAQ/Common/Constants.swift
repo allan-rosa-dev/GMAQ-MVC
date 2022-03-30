@@ -19,7 +19,7 @@ struct K {
 	struct App {
 		struct Defaults {
 			static let lastQuizCategory = QuestionCategory.animeAndManga.description
-			static let lastQuizSize = 10
+			static let lastQuizSize = "lastQuizSize"
 			static let quizHighScore = "quizHighScore"
 		}
 		

@@ -16,16 +16,6 @@ class HighScoreViewController: UIViewController {
 	var selectedCategory = QuestionCategory.animeAndManga
 	let pickerView = UIPickerView()
 	
-
-	/*
-	let scoreboard = Scoreboard(category: QuestionCategory.boardGames.description,
-				   scores: [ScoreRecord(score: 9999999, username: "Chu"),
-							ScoreRecord(score: 20, username: "Noob"),
-							ScoreRecord(score: 3, username: "G4m3r Gr1LL UwU"),
-						   ScoreRecord(score: 1, username: "Po_GG_eR")]
-				  )
-	 */
-	
 	@IBOutlet weak var categoryTextField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
 	

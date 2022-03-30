@@ -7,8 +7,6 @@
 
 import Foundation
 
-private let scoreboardSize = 10
-
 class Scoreboard: Codable {
 	let category: String
 	var scores: [ScoreRecord] // Implement a SortedArray type and make this adopt it so performance increases
@@ -20,7 +18,7 @@ class Scoreboard: Codable {
 	
 	// A SortedArray type would increase the performance on this method with proper implementation
 	func add(_ record: ScoreRecord) {
-		if scores.count == scoreboardSize {
+		if scores.count == 10 {
 			scores.append(record)
 			scores.sort{ $0.score > $1.score }
 			scores.removeLast()

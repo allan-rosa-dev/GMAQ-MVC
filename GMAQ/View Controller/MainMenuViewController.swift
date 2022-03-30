@@ -9,6 +9,8 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+	@IBOutlet weak var settingsButton: UIButton!
+	
 	@IBAction func buttonPressed(_ sender: UIButton) {
 		// sender.provideVisualFeedback()
 		let senderTag = ButtonTag(rawValue: sender.tag)
@@ -26,6 +28,9 @@ class MainMenuViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		settingsButton.isHidden = true // not implemented yet
+		
 		navigationController?.isNavigationBarHidden = true
 	}
 }

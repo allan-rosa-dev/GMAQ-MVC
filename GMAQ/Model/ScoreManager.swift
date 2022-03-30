@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+ 
 class ScoreManager {
 	// MARK: - Properties
 	static let shared = ScoreManager()
@@ -19,7 +19,11 @@ class ScoreManager {
 	func highScoreCutoff(for category: QuestionCategory) -> Int {
 		guard let scoreboard = scoreboards[category] else {
 			preload(category);
-			return highScoreCutoff(for: category) }
+			return highScoreCutoff(for: category)
+		}
+		if scoreboard.scores.count < 10 {
+			return 0
+		}
 		return scoreboard.scores.last?.score ?? 0
 	}
 	

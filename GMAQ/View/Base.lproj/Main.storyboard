@@ -82,6 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Main Menu" id="bZJ-8y-rBz"/>
                     <connections>
+                        <outlet property="settingsButton" destination="gzB-fi-nwz" id="dOj-e2-2fG"/>
                         <segue destination="Xwq-NK-sva" kind="show" identifier="mainMenuToGameSettings" id="YCJ-3r-FJH"/>
                         <segue destination="aQG-NT-Smu" kind="show" identifier="mainMenuToHighScores" id="Yz5-Od-7c1"/>
                     </connections>
@@ -522,7 +523,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IpW-pu-oYa"/>
+        <segue reference="Yz5-Od-7c1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="GMAQ-logos" width="1200" height="1200"/>

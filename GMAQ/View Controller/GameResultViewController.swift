@@ -31,7 +31,7 @@ class GameResultViewController: UIViewController {
 		initializeHideKeyboard()
 		configureTableView()
 		analyzeScore(quiz)
-		debugStuff()
+		// debugStuff()
     }
 	
 	// MARK: - Methods
