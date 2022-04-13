@@ -437,23 +437,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="go0-JN-jK9">
-                                <rect key="frame" x="0.0" y="64" width="414" height="103.66666666666669"/>
+                                <rect key="frame" x="8" y="64" width="398" height="103.66666666666669"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-trophy" translatesAutoresizingMaskIntoConstraints="NO" id="uiz-Zb-z3p">
-                                        <rect key="frame" x="0.0" y="0.0" width="118.33333333333333" height="103.66666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="113.66666666666667" height="103.66666666666667"/>
                                         <color key="tintColor" name="font-color"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vTE-0x-kUZ">
-                                        <rect key="frame" x="118.33333333333334" y="0.0" width="295.66666666666663" height="103.66666666666667"/>
+                                        <rect key="frame" x="113.66666666666666" y="0.0" width="284.33333333333337" height="103.66666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High Scores" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaj-C8-qxL">
-                                                <rect key="frame" x="44.666666666666686" y="0.0" width="206" height="52"/>
+                                                <rect key="frame" x="39.333333333333314" y="0.0" width="206" height="52"/>
                                                 <fontDescription key="fontDescription" name="DevanagariSangamMN-Bold" family="Devanagari Sangam MN" pointSize="40"/>
                                                 <color key="textColor" name="font-color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Category" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pHA-5d-8fU" userLabel="Category Selected">
-                                                <rect key="frame" x="0.0" y="52" width="295.66666666666669" height="51.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="52" width="284.33333333333331" height="51.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="DevanagariSangamMN" family="Devanagari Sangam MN" pointSize="30"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -478,13 +478,13 @@
                         <viewLayoutGuide key="safeArea" id="VnP-SW-zzW"/>
                         <color key="backgroundColor" name="background-color"/>
                         <constraints>
-                            <constraint firstItem="go0-JN-jK9" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" id="56D-K6-f7S"/>
+                            <constraint firstItem="go0-JN-jK9" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" constant="8" id="56D-K6-f7S"/>
                             <constraint firstItem="go0-JN-jK9" firstAttribute="top" secondItem="VnP-SW-zzW" secondAttribute="top" constant="20" id="6b5-Pw-FcF"/>
                             <constraint firstItem="Odt-tf-Dnh" firstAttribute="top" secondItem="go0-JN-jK9" secondAttribute="bottom" constant="20" id="BHI-tN-Vak"/>
                             <constraint firstItem="uiz-Zb-z3p" firstAttribute="height" secondItem="VnP-SW-zzW" secondAttribute="height" multiplier="0.15" id="GJ1-Ur-R2B"/>
                             <constraint firstItem="Odt-tf-Dnh" firstAttribute="leading" secondItem="VnP-SW-zzW" secondAttribute="leading" id="MOr-Iy-h10"/>
                             <constraint firstItem="VnP-SW-zzW" firstAttribute="bottom" secondItem="Odt-tf-Dnh" secondAttribute="bottom" id="Pal-po-s7u"/>
-                            <constraint firstAttribute="trailing" secondItem="go0-JN-jK9" secondAttribute="trailing" id="fYa-VO-dqq"/>
+                            <constraint firstAttribute="trailing" secondItem="go0-JN-jK9" secondAttribute="trailing" constant="8" id="fYa-VO-dqq"/>
                             <constraint firstItem="VnP-SW-zzW" firstAttribute="trailing" secondItem="Odt-tf-Dnh" secondAttribute="trailing" id="lkd-AH-V4l"/>
                         </constraints>
                     </view>
@@ -523,7 +523,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Yz5-Od-7c1"/>
+        <segue reference="IpW-pu-oYa"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="GMAQ-logos" width="1200" height="1200"/>

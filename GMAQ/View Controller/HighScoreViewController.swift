@@ -13,7 +13,7 @@ class HighScoreViewController: UIViewController {
 				   scores: [ScoreRecord(score: 998, username: "EL POGGER"),
 							ScoreRecord(score: 777, username: "Dood"),
 							ScoreRecord(score: 10, username: "XxX_ShAd0wN_0F_DarKne55_XxX")])
-	var selectedCategory = QuestionCategory.animeAndManga
+	var selectedCategory: QuestionCategory = .generalKnowledge
 	let pickerView = UIPickerView()
 	
 	@IBOutlet weak var categoryTextField: UITextField!
@@ -21,7 +21,20 @@ class HighScoreViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+		configureUI()
+    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		// force back button to return to main menu
+		if let homeVC = navigationController?.viewControllers.first {
+			navigationController?.viewControllers = [homeVC, self]
+		}
+	}
+	
+	fileprivate func configureUI(){
+		navigationController?.isNavigationBarHidden = false
+		
 		pickerView.delegate = self
 		pickerView.dataSource = self
 
@@ -29,11 +42,13 @@ class HighScoreViewController: UIViewController {
 		categoryTextField.clearsOnBeginEditing = true
 		categoryTextField.allowsEditingTextAttributes = false
 		categoryTextField.inputView = pickerView
-		categoryTextField.text = QuestionCategory.generalKnowledge.description
+		if let lastQuizCategory = UserDefaults.standard.string(forKey: K.App.Defaults.lastQuizCategory){
+			selectedCategory = QuestionCategory(lastQuizCategory)
+		}
+		categoryTextField.text = selectedCategory.description
 		
-		navigationController?.isNavigationBarHidden = false
 		configureTableView()
-    }
+	}
     
 	fileprivate func configureTableView(){
 		tableView.delegate = self
@@ -97,7 +112,6 @@ extension HighScoreViewController: UIPickerViewDelegate, UIPickerViewDataSource 
 	
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		categoryTextField.text = QuestionCategory.allCases[row].description
-		categoryTextField.resignFirstResponder()
 	}
 }
 

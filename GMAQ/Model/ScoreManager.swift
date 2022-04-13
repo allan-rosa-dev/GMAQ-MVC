@@ -73,23 +73,17 @@ class ScoreManager {
 	func load(category: QuestionCategory){
 		guard let scoreboard = scoreboards[category] else { preload(category); return }
 		guard !scoreboard.scores.isEmpty else { preload(category); return }
-		print("Category \(category.description) is loaded:")
-		print(scoreboard.scores)
 	}
 	
 	func save(category: QuestionCategory){
 		do {
 			let jsonScoreData = try JSONEncoder().encode(scoreboards[category])
 			
-			print(jsonScoreData)
-			
 			if let userDocumentsPath = FileManager.default.urls(for: .documentDirectory,
 																   in: .userDomainMask).first {
 
 				let fileName = generateFileName(for: category)
 				let destinationUrl = userDocumentsPath.appendingPathComponent(fileName)
-				print("Saving file [\(fileName)] to:")
-				print("\(destinationUrl)")
 				
 				try jsonScoreData.write(to: destinationUrl, options: .atomic)
 			}

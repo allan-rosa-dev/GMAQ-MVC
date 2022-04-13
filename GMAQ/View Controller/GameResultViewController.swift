@@ -27,11 +27,10 @@ class GameResultViewController: UIViewController {
         super.viewDidLoad()
 		
 		navigationController?.isNavigationBarHidden = true
-		nameTextField.delegate = self
 		initializeHideKeyboard()
-		configureTableView()
+		configureUI()
 		analyzeScore(quiz)
-		// debugStuff()
+		debugStuff()
     }
 	
 	// MARK: - Methods
@@ -55,6 +54,13 @@ class GameResultViewController: UIViewController {
 		alert.addAction(resetAction)
 		alert.addAction(setHighScoreAction)
 		present(alert, animated: true)
+	}
+	
+	fileprivate func configureUI(){
+		configureTableView()
+		nameTextField.delegate = self
+		nameTextField.clearsOnBeginEditing = true
+		nameTextField.textColor = K.Design.fontColor
 	}
 	
 	fileprivate func configureTableView(){
@@ -85,11 +91,14 @@ class GameResultViewController: UIViewController {
 		}
 		let confirmAction = UIAlertAction(title: "Confirm", style: .default){ _ in
 			if self.playerGotHighScore {
-				print("ADDING HIGH SCORE: \(playerName) got \(self.quiz.score) points!") //todo
 				ScoreManager.shared.addRecord(score: self.quiz.score, username: playerName, to: self.quiz.category)
+				ScoreManager.shared.save(category: self.quiz.category)
+				
+				self.goToHighScores()
 			}
-			ScoreManager.shared.save(category: self.quiz.category)
-			self.returnToHome()
+			else {
+				self.returnToHome()
+			}
 		}
 		let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
 		alert.addAction(cancelAction)
@@ -103,13 +112,11 @@ class GameResultViewController: UIViewController {
 		let cutoffScore = ScoreManager.shared.highScoreCutoff(for: quiz.category)
 		if quiz.score > cutoffScore {
 			resultsLabel.text = "You've got a highscore, with \(quiz.score) points!"
-			print(resultsLabel.text!)
 			nameTextField.isHidden = false
 			playerGotHighScore = true
 		}
 		else {
-			resultsLabel.text = "Your score is \(quiz.score) points!\nYou were \(cutoffScore - quiz.score + 1) points short of making it :("
-			print(resultsLabel.text!)
+			resultsLabel.text = "Your score is \(quiz.score) points!\nYou were \(cutoffScore - quiz.score + 1) points short of making it \n:("
 			nameTextField.isHidden = true
 			playerGotHighScore = false
 		}
@@ -120,12 +127,21 @@ class GameResultViewController: UIViewController {
 	}
 	
 	//MARK: - Navigation
-	private func returnToHome(){
-		navigationController?.popToRootViewController(animated: true)
+	private func returnToHome(animated: Bool = true){
+		navigationController?.popToRootViewController(animated: animated)
 	}
 	
-	private func goToHighScores(newHighScore score: Int, forUser user: String){
-		returnToHome()
+	private func goToHighScores(){
+		guard let viewControllers = navigationController?.viewControllers else {
+			returnToHome(animated: false);
+			return;
+		}
+		performSegue(withIdentifier: K.App.View.Segue.resultsToHighScores, sender: self)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		let destinationVC = segue.destination as! HighScoreViewController
+		destinationVC.selectedCategory = quiz.category
 	}
 }
 
@@ -192,7 +208,7 @@ extension GameResultViewController: UITextFieldDelegate {
 	
 	//MARK: - Helper functions
 	func prepareForEndEditing(_ textField: UITextField){
-		guard let text = textField.text else {
+		guard textField.text != nil else {
 			textField.text = "Insert your name"
 			return
 		}
