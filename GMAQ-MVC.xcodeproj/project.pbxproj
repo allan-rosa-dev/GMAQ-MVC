@@ -62,7 +62,7 @@
 		AC10AD7626FBB03D00BC9688 /* QuizBreakdownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizBreakdownCell.swift; sourceTree = "<group>"; };
 		AC1174642797565700E4D872 /* HighScoreHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreHeader.swift; sourceTree = "<group>"; };
 		AC1CB94227039983001C8A1D /* QuizBreakdownHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizBreakdownHeader.swift; sourceTree = "<group>"; };
-		AC23629426C5A27800BB92BB /* GMAQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GMAQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC23629426C5A27800BB92BB /* GMAQ-MVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GMAQ-MVC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC23629726C5A27800BB92BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC23629926C5A27800BB92BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AC23629B26C5A27800BB92BB /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -70,10 +70,10 @@
 		AC2362A026C5A27900BB92BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC2362A326C5A27900BB92BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC2362A526C5A27900BB92BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC2362AA26C5A27900BB92BB /* GMAQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMAQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC2362AA26C5A27900BB92BB /* GMAQ-MVCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GMAQ-MVCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2362AE26C5A27900BB92BB /* GMAQTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMAQTests.swift; sourceTree = "<group>"; };
 		AC2362B026C5A27900BB92BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC2362B526C5A27900BB92BB /* GMAQUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GMAQUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC2362B526C5A27900BB92BB /* GMAQ-MVCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GMAQ-MVCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2362B926C5A27900BB92BB /* GMAQUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMAQUITests.swift; sourceTree = "<group>"; };
 		AC2362BB26C5A27900BB92BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC2362CC26C5A5C700BB92BB /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -136,9 +136,9 @@
 		AC23629526C5A27800BB92BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AC23629426C5A27800BB92BB /* GMAQ.app */,
-				AC2362AA26C5A27900BB92BB /* GMAQTests.xctest */,
-				AC2362B526C5A27900BB92BB /* GMAQUITests.xctest */,
+				AC23629426C5A27800BB92BB /* GMAQ-MVC.app */,
+				AC2362AA26C5A27900BB92BB /* GMAQ-MVCTests.xctest */,
+				AC2362B526C5A27900BB92BB /* GMAQ-MVCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,9 +248,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AC23629326C5A27800BB92BB /* GMAQ */ = {
+		AC23629326C5A27800BB92BB /* GMAQ-MVC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC2362BE26C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ" */;
+			buildConfigurationList = AC2362BE26C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVC" */;
 			buildPhases = (
 				AC23629026C5A27800BB92BB /* Sources */,
 				AC23629126C5A27800BB92BB /* Frameworks */,
@@ -260,17 +260,17 @@
 			);
 			dependencies = (
 			);
-			name = GMAQ;
+			name = "GMAQ-MVC";
 			packageProductDependencies = (
 				ACC7040526D36BAC006AD10D /* IQKeyboardManagerSwift */,
 			);
 			productName = GMAQ;
-			productReference = AC23629426C5A27800BB92BB /* GMAQ.app */;
+			productReference = AC23629426C5A27800BB92BB /* GMAQ-MVC.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AC2362A926C5A27900BB92BB /* GMAQTests */ = {
+		AC2362A926C5A27900BB92BB /* GMAQ-MVCTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC2362C126C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQTests" */;
+			buildConfigurationList = AC2362C126C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVCTests" */;
 			buildPhases = (
 				AC2362A626C5A27900BB92BB /* Sources */,
 				AC2362A726C5A27900BB92BB /* Frameworks */,
@@ -281,14 +281,14 @@
 			dependencies = (
 				AC2362AC26C5A27900BB92BB /* PBXTargetDependency */,
 			);
-			name = GMAQTests;
+			name = "GMAQ-MVCTests";
 			productName = GMAQTests;
-			productReference = AC2362AA26C5A27900BB92BB /* GMAQTests.xctest */;
+			productReference = AC2362AA26C5A27900BB92BB /* GMAQ-MVCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		AC2362B426C5A27900BB92BB /* GMAQUITests */ = {
+		AC2362B426C5A27900BB92BB /* GMAQ-MVCUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC2362C426C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQUITests" */;
+			buildConfigurationList = AC2362C426C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVCUITests" */;
 			buildPhases = (
 				AC2362B126C5A27900BB92BB /* Sources */,
 				AC2362B226C5A27900BB92BB /* Frameworks */,
@@ -299,9 +299,9 @@
 			dependencies = (
 				AC2362B726C5A27900BB92BB /* PBXTargetDependency */,
 			);
-			name = GMAQUITests;
+			name = "GMAQ-MVCUITests";
 			productName = GMAQUITests;
-			productReference = AC2362B526C5A27900BB92BB /* GMAQUITests.xctest */;
+			productReference = AC2362B526C5A27900BB92BB /* GMAQ-MVCUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AC23628F26C5A27800BB92BB /* Build configuration list for PBXProject "GMAQ" */;
+			buildConfigurationList = AC23628F26C5A27800BB92BB /* Build configuration list for PBXProject "GMAQ-MVC" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -342,9 +342,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AC23629326C5A27800BB92BB /* GMAQ */,
-				AC2362A926C5A27900BB92BB /* GMAQTests */,
-				AC2362B426C5A27900BB92BB /* GMAQUITests */,
+				AC23629326C5A27800BB92BB /* GMAQ-MVC */,
+				AC2362A926C5A27900BB92BB /* GMAQ-MVCTests */,
+				AC2362B426C5A27900BB92BB /* GMAQ-MVCUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -431,12 +431,12 @@
 /* Begin PBXTargetDependency section */
 		AC2362AC26C5A27900BB92BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AC23629326C5A27800BB92BB /* GMAQ */;
+			target = AC23629326C5A27800BB92BB /* GMAQ-MVC */;
 			targetProxy = AC2362AB26C5A27900BB92BB /* PBXContainerItemProxy */;
 		};
 		AC2362B726C5A27900BB92BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AC23629326C5A27800BB92BB /* GMAQ */;
+			target = AC23629326C5A27800BB92BB /* GMAQ-MVC */;
 			targetProxy = AC2362B626C5A27900BB92BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -633,7 +633,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMAQ.app/GMAQ";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMAQ-MVC.app/GMAQ-MVC";
 			};
 			name = Debug;
 		};
@@ -655,7 +655,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMAQ.app/GMAQ";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GMAQ-MVC.app/GMAQ-MVC";
 			};
 			name = Release;
 		};
@@ -702,7 +702,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AC23628F26C5A27800BB92BB /* Build configuration list for PBXProject "GMAQ" */ = {
+		AC23628F26C5A27800BB92BB /* Build configuration list for PBXProject "GMAQ-MVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2362BC26C5A27900BB92BB /* Debug */,
@@ -711,7 +711,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC2362BE26C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ" */ = {
+		AC2362BE26C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2362BF26C5A27900BB92BB /* Debug */,
@@ -720,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC2362C126C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQTests" */ = {
+		AC2362C126C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVCTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2362C226C5A27900BB92BB /* Debug */,
@@ -729,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC2362C426C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQUITests" */ = {
+		AC2362C426C5A27900BB92BB /* Build configuration list for PBXNativeTarget "GMAQ-MVCUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC2362C526C5A27900BB92BB /* Debug */,
